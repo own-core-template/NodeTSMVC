@@ -28,7 +28,7 @@ class MODEL {
 
     // Start Add Plugins
 
-    this.schema.plugin(softDel, {
+    this.m_schema.plugin(softDel, {
       overrideMethods: "all",
       deletedAt: true,
     });

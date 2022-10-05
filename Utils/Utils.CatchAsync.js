@@ -1,3 +1,3 @@
-module.exports.catchAsync = (fn) => async (ctx, next) => {
-  await fn(ctx, next).catch(next);
+module.exports.catchAsync = (fn) => async (req, res, next) => {
+  await fn(req, res, next).catch(next);
 };

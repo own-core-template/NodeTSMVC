@@ -1,15 +1,15 @@
 const { XXXXModel } = require("../Models/Models.XXXX");
-const { BVIEW } = require("../Base/VIEW");
 const { BCONTROLLER } = require("../Base/CONTROLLER");
+const { catchAsync } = require("../Utils/Utils.CatchAsync");
 
-class XXXXController extends BCONTROLLER {
+class XXXXControllers extends BCONTROLLER {
   constructor() {
     super(XXXXModel);
   }
 
-  XXXXPage(req, res, next) {
-    BVIEW.render("Views.XXXX");
+  async XXXXPage(req, res, next) {
+    res.render("Views.XXXX.ejs");
   }
 }
 
-module.exports = new XXXXController();
+module.exports = new XXXXControllers();
