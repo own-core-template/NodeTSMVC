@@ -16,7 +16,7 @@ class XXXXControllers {
 
     switch (String(query.api).toLowerCase()) {
       case "json":
-        return await CRUD.getMany();
+        return await CRUD.getMany(query);
       case "xml":
         return res.status(200).send("XML API");
     }

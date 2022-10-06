@@ -73,6 +73,11 @@ class APIFeatures {
 
   paginate() {
     const { page, per_page } = this.queryString;
+
+    if (page < 0 || per_page < 0) {
+      return this;
+    }
+
     const pageIndex = page * 1 || 1;
     const perPage = per_page * 1 || 10;
     const skip = (pageIndex - 1) * perPage;
