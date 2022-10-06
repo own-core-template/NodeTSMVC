@@ -1,5 +1,6 @@
 const { BROUTER } = require("../Base/ROUTER");
-const ctrler = require("../Controllers/Controllers.XXXX");
+const ctrl = require("../Controllers/Controllers.XXXX");
+const mw = require("../Middleware/Routes/Middleware.Routes.XXXX");
 class XXXXRoutes extends BROUTER {
   constructor() {
     super("/XXXX");
@@ -9,26 +10,16 @@ class XXXXRoutes extends BROUTER {
     {
       path: "/page1",
       method: this.GET,
-      handler: ctrler.XXXXPage.bind(ctrler),
+      handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: [
-        (req, res, next) => {
-          console.log("PASS", req.baseUrl);
-          next();
-        },
-      ],
+      middleware: mw,
     },
     {
       path: "/page2",
       method: this.GET,
-      handler: ctrler.XXXXPage.bind(ctrler),
+      handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: [
-        (req, res, next) => {
-          console.log("PASS", req.baseUrl);
-          next();
-        },
-      ],
+      middleware: mw,
     },
   ];
 }

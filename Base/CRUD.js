@@ -8,12 +8,22 @@ const {
   multipleMongooseToObject,
   objectId,
 } = require("../Utils/Utils.MongoFeatures");
+const { request } = require("express");
 
 class CRUD {
   constructor(p_res, p_model) {
     this.m_res = p_res;
     this.m_model = p_model;
   }
+
+  async getAuthor() {
+    sendSuccess(this.m_res, {
+      Name: "TRAN PHUOC TIN",
+      From: "VietNam",
+      Age: 22,
+    });
+  }
+
   async getOne(p_id) {
     const data = await this.m_model.fineOne({ _id: p_id });
     sendSuccess(this.m_res, data);
@@ -65,7 +75,5 @@ class CRUD {
     else sendSuccess(this.m_res, doc, "Restore Successful");
   }
 }
-class CONTROLLER {}
 
 module.exports.BCRUD = CRUD;
-module.exports.BCONTROLLER = CONTROLLER;

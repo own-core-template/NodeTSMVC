@@ -1,12 +1,10 @@
 const { XXXXModel } = require("../Models/Models.XXXX");
-const { BCONTROLLER, BCRUD } = require("../Base/CONTROLLER");
+const { BCRUD } = require("../Base/CRUD");
 
 const { objContainKey } = require("../Utils/Utils.Common");
 
-class XXXXControllers {
-  constructor() {}
-
-  async XXXXPage(req, res, next) {
+module.exports = {
+  XXXXPage: async (req, res, next) => {
     let query = req.query;
     if (!objContainKey(query, "api")) {
       return res.render("XXXXPage", { title: "XXXX" });
@@ -16,11 +14,9 @@ class XXXXControllers {
 
     switch (String(query.api).toLowerCase()) {
       case "json":
-        return await CRUD.getMany(query);
+        return await CRUD.getAuthor();
       case "xml":
         return res.status(200).send("XML API");
     }
-  }
-}
-
-module.exports = new XXXXControllers();
+  },
+};

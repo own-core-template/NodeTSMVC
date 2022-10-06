@@ -12,7 +12,7 @@ class METHODS {
 const IROUTE = {
   path: String || [String],
   method: METHODS,
-  handler: catchAsync((req, res, next) => {}),
+  handler: (req, res, next) => {},
   permissions: [String],
   middleware: [(req, res, next) => {}],
 };
@@ -35,23 +35,23 @@ class ROUTER extends METHODS {
     // Returns Router object, which we will use in Server class
     for (const route of this.R) {
       for (const mw of route.middleware) {
-        this.m_router.use(route.path, mw);
+        this.m_router.use(route.path, catchAsync(mw));
       }
       switch (route.method) {
         case "GET":
-          this.m_router.get(route.path, route.handler);
+          this.m_router.get(route.path, catchAsync(route.handler));
           break;
         case "POST":
-          this.m_router.post(route.path, route.handler);
+          this.m_router.post(route.path, catchAsync(route.handler));
           break;
         case "PUT":
-          this.m_router.put(route.path, route.handler);
+          this.m_router.put(route.path, catchAsync(route.handler));
           break;
         case "PATCH":
-          this.m_router.patch(route.path, route.handler);
+          this.m_router.patch(route.path, catchAsync(route.handler));
           break;
         case "DELETE":
-          this.m_router.delete(route.path, route.handler);
+          this.m_router.delete(route.path, catchAsync(route.handler));
           break;
         default:
         // Throw exception

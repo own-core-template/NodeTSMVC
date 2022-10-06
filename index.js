@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const path = require("path");
 const { GlobalMiddleware } = require("./Config/Config.GlobalMiddleware");
-
+const errorHandler = require("./Middleware/Middleware.ErrorHandler");
 const PORT = 8888;
 
 // use global middlewares
@@ -32,7 +32,7 @@ require("./Config/Config.Routes").forEach((route) => {
 });
 
 // error handler
-
+app.use(errorHandler);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
