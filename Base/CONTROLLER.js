@@ -1,5 +1,4 @@
 const { APIFeatures } = require("../Utils/Utils.APIFeatures");
-const { catchAsync } = require("../Utils/Utils.CatchAsync");
 const { sendError, sendSuccess } = require("../Utils/Utils.Response");
 const {
   mongoEpressions,

@@ -1,15 +1,15 @@
 const { BROUTER } = require("../Base/ROUTER");
-const { XXXXPage, getOne } = require("../Controllers/Controllers.XXXX");
-class XXXXRoutes extends BROUTER {
+const { YYYYPage, getOne } = require("../Controllers/Controllers.YYYY");
+class YYYYRoutes extends BROUTER {
   constructor() {
-    super("/XXXX");
+    super("/YYYY");
   }
 
   R = [
     {
       path: "/page1",
       method: this.GET,
-      handler: XXXXPage,
+      handler: YYYYPage,
       permissions: [],
       middleware: [
         (req, res, next) => {
@@ -21,7 +21,7 @@ class XXXXRoutes extends BROUTER {
     {
       path: "/page2",
       method: this.GET,
-      handler: XXXXPage,
+      handler: YYYYPage,
       permissions: [],
       middleware: [
         (req, res, next) => {
@@ -33,4 +33,4 @@ class XXXXRoutes extends BROUTER {
   ];
 }
 
-module.exports = new XXXXRoutes();
+module.exports = new YYYYRoutes();
