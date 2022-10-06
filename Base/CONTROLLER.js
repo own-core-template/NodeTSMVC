@@ -9,61 +9,63 @@ const {
   objectId,
 } = require("../Utils/Utils.MongoFeatures");
 
-class CONTROLLER {
-  constructor(p_model) {
+class CRUD {
+  constructor(p_res, p_model) {
+    this.m_res = p_res;
     this.m_model = p_model;
   }
-
-  async getOne(req, res, next) {
-    const data = await this.m_model.fineOne({ _id: req.params.id });
-    sendSuccess(res, data);
+  async getOne(p_id) {
+    const data = await this.m_model.fineOne({ _id: p_id });
+    sendSuccess(this.m_res, data);
   }
 
-  async getMany(req, res, next) {
-    const features = new APIFeatures(this.m_model, req.query)
+  async getMany(p_query = {}) {
+    const features = new APIFeatures(this.m_model, p_query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
     const data = await features.query;
-    sendSuccess(res, data);
+    sendSuccess(this.m_res, data);
   }
 
-  async createOne(req, res, next) {
-    const doc = await this.m_model.create(req.body);
-    if (!doc) sendError(res, "Can't Create");
-    else sendSuccess(res, doc, "Create Successful");
+  async createOne(p_body) {
+    const doc = await this.m_model.create(p_body);
+    if (!doc) sendError(this.m_res, "Can't Create");
+    else sendSuccess(this.m_res, doc, "Create Successful");
   }
 
-  async updateOne(req, res, next) {
-    let body = mongoEpressions(req.body);
+  async updateOne(p_id, p_body) {
+    let body = mongoEpressions(p_body);
     const options = { new: true, runValidators: true };
     const doc = await this.m_model.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: p_id },
       body,
       options
     );
-    if (!doc) sendError(res, "Can't Update");
-    else sendSuccess(res, doc, "Update Successful");
+    if (!doc) sendError(this.m_res, "Can't Update");
+    else sendSuccess(this.m_res, doc, "Update Successful");
   }
 
-  async deleteOne(req, res, next) {
-    const doc = await this.m_model.deleteById(req.params.id);
-    if (!doc) sendError(res, "Can't Delete");
-    else sendSuccess(res, doc, "Delete Successful");
+  async deleteOne(p_id) {
+    const doc = await this.m_model.deleteById(p_id);
+    if (!doc) sendError(this.m_res, "Can't Delete");
+    else sendSuccess(this.m_res, doc, "Delete Successful");
   }
 
-  async destroyOne(req, res, next) {
-    const doc = await this.m_model.findOneAndDelete({ _id: req.params.id });
-    if (!doc) sendError(res, "Can't Destroy");
-    else sendSuccess(res, doc, "Destroy Successful");
+  async destroyOne(p_id) {
+    const doc = await this.m_model.findOneAndDelete({ _id: p_id });
+    if (!doc) sendError(this.m_res, "Can't Destroy");
+    else sendSuccess(this.m_res, doc, "Destroy Successful");
   }
 
-  async restoreOne(req, res, next) {
-    const doc = await this.m_model.restore({ _id: req.params.id });
-    if (!doc) sendError(res, "Can't Restore");
-    else sendSuccess(res, doc, "Restore Successful");
+  async restoreOne(p_id) {
+    const doc = await this.m_model.restore({ _id: p_id });
+    if (!doc) sendError(this.m_res, "Can't Restore");
+    else sendSuccess(this.m_res, doc, "Restore Successful");
   }
 }
+class CONTROLLER {}
 
+module.exports.BCRUD = CRUD;
 module.exports.BCONTROLLER = CONTROLLER;

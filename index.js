@@ -14,6 +14,7 @@ const PORT = 8888;
 // use global middlewares
 app.use(GlobalMiddleware);
 
+const DBconn = require("./DB/DB.Connect");
 
 // init view engine
 // engine.cache = new LRU({ });

@@ -1,5 +1,5 @@
 const { BROUTER } = require("../Base/ROUTER");
-const { XXXXPage, getOne } = require("../Controllers/Controllers.XXXX");
+const ctrler = require("../Controllers/Controllers.XXXX");
 class XXXXRoutes extends BROUTER {
   constructor() {
     super("/XXXX");
@@ -9,7 +9,7 @@ class XXXXRoutes extends BROUTER {
     {
       path: "/page1",
       method: this.GET,
-      handler: XXXXPage,
+      handler: ctrler.XXXXPage.bind(ctrler),
       permissions: [],
       middleware: [
         (req, res, next) => {
@@ -21,7 +21,7 @@ class XXXXRoutes extends BROUTER {
     {
       path: "/page2",
       method: this.GET,
-      handler: XXXXPage,
+      handler: ctrler.XXXXPage.bind(ctrler),
       permissions: [],
       middleware: [
         (req, res, next) => {
