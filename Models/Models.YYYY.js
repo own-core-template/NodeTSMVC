@@ -1,6 +1,9 @@
 const { BMODEL } = require("../Base/MODEL");
 
-const definition = {};
+const definition = {
+  KKKK: { type: String },
+  TTTT: { type: Number },
+};
 const options = {};
 const index = {};
 

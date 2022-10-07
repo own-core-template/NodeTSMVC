@@ -1,13 +1,11 @@
 const http = require("http");
 const createError = require("http-errors");
 const express = require("express");
-let engine = require("ejs"),
-  LRU = require("lru-cache");
-const expressLayouts = require("express-ejs-layouts");
 const app = express();
 const server = http.createServer(app);
 const path = require("path");
 const { GlobalMiddleware } = require("./Config/Config.GlobalMiddleware");
+const { setViews, setPublic } = require("./Config/Config.View");
 const errorHandler = require("./Middleware/Middleware.ErrorHandler");
 const PORT = 8888;
 
@@ -17,12 +15,10 @@ app.use(GlobalMiddleware);
 const DBconn = require("./DB/DB.Connect");
 
 // init view engine
-// engine.cache = new LRU({ });
-app.set("views", path.join(__dirname, "Views"));
-app.set("view engine", "ejs");
-app.set("view cache", true);
-app.use(expressLayouts);
-app.set("layout", "Layouts/layout");
+setViews(app, __dirname);
+
+// set public folders
+setPublic(express, __dirname);
 
 // init routes
 require("./Config/Config.Routes").forEach((route) => {

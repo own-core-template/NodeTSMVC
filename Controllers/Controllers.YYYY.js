@@ -5,12 +5,12 @@ const { objContainKey } = require("../Utils/Utils.Common");
 
 module.exports = {
   YYYYPage: async (req, res, next) => {
+    const CRUD = new BCRUD(res, YYYYModel);
+
     let query = req.query;
     if (!objContainKey(query, "api")) {
       return res.render("YYYYPage", { title: "YYYY" });
     }
-
-    const CRUD = new BCRUD(res, YYYYModel);
 
     switch (String(query.api).toLowerCase()) {
       case "json":

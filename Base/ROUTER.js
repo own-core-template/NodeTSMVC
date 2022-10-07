@@ -18,9 +18,9 @@ const IROUTE = {
 };
 
 class ROUTER extends METHODS {
-  constructor(p_routerName) {
+  constructor(routerName) {
     super();
-    this.m_routerName = p_routerName;
+    this.m_routerName = routerName;
     this.m_router = Router({ mergeParams: true });
   }
 

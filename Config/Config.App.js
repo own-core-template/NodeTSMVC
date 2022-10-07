@@ -17,4 +17,14 @@ module.exports.CONFIGS = {
       PASSWORD: "123456789",
     },
   },
+  EMAIL: {
+    MAIL_USERNAME: "pbnghia.18ce@vku.udn.vn",
+    EMAIL_PASSWORD: "google@daophim!",
+    EMAIL_HOST: "smtp.mailtrap.io",
+    EMAIL_PORT: 2525,
+    EMAIL_FROM: "tptin.18it2@vku.udn.vn",
+    SENDGRID_USERNAME: "apikey",
+    SENDGRID_PASSWORD:
+      "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",
+  },
 };
