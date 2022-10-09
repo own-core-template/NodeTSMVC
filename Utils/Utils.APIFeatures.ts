@@ -1,6 +1,6 @@
-const selectFields = (data, allowFields) => {
+const selectFields = (data: any, allowFields: string) => {
   try {
-    const newObj = {};
+    let newObj: any;
     if (!allowFields) return data;
     Object.keys(data).forEach((el) => {
       if (allowFields.split(",").includes(el)) newObj[el] = data[el];
@@ -12,8 +12,16 @@ const selectFields = (data, allowFields) => {
   }
 };
 
-class APIFeatures {
-  constructor(query, queryString) {
+export class APIFeatures {
+  public query: any;
+  public queryString: any;
+  public _: any;
+  public fields: any;
+  public expands: any;
+  public search: any;
+  public filters: any;
+
+  constructor(query: any, queryString: string) {
     this.query = query;
     this.queryString = queryString;
   }
@@ -87,4 +95,3 @@ class APIFeatures {
     return this;
   }
 }
-module.exports.APIFeatures = APIFeatures;

@@ -1,7 +1,7 @@
 const { BROUTER } = require("../Base/ROUTER");
-const ctrl = require("../Controllers/Controllers.YYYY");
-const mw = require("../Middleware/Routes/Middleware.Routes.YYYY");
-class YYYYRoutes extends BROUTER {
+const CTRL = require("../Controllers/Controllers.YYYY");
+const MIDDLEWARE = require("../Middleware/Routes/Middleware.Routes.YYYY");
+export default class YYYYRoutes extends BROUTER {
   constructor() {
     super("/YYYY");
   }
@@ -10,16 +10,16 @@ class YYYYRoutes extends BROUTER {
     {
       path: "/page1",
       method: this.GET,
-      handler: ctrl.YYYYPage,
+      handler: CTRL.YYYYPage,
       permissions: [],
-      middleware: mw,
+      middleware: MIDDLEWARE,
     },
     {
       path: "/page2",
       method: this.GET,
-      handler: ctrl.YYYYPage,
+      handler: CTRL.YYYYPage,
       permissions: [],
-      middleware: mw,
+      middleware: MIDDLEWARE,
     },
   ];
 }

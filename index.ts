@@ -1,24 +1,25 @@
-const http = require("http");
-const createError = require("http-errors");
-const express = require("express");
+import http from "http";
+import createError from "http-errors";
+import express, { Router, Request, Response, NextFunction } from "express";
+
+import path from "path";
+import { GlobalMiddleware } from "./Config/Config.GlobalMiddleware";
+import { setViews, setPublic } from "./Config/Config.View";
+import errorHandler from "./Middleware/Middleware.ErrorHandler";
 const app = express();
 const server = http.createServer(app);
-const path = require("path");
-const { GlobalMiddleware } = require("./Config/Config.GlobalMiddleware");
-const { setViews, setPublic } = require("./Config/Config.View");
-const errorHandler = require("./Middleware/Middleware.ErrorHandler");
 const PORT = 8888;
 
 // use global middlewares
 app.use(GlobalMiddleware);
 
-const DBconn = require("./DB/DB.Connect");
+import DBconn from "./DB/DB.Connect";
 
 // init view engine
 setViews(app, __dirname);
 
 // set public folders
-setPublic(express, __dirname);
+setPublic(app, express, __dirname);
 
 // init routes
 require("./Config/Config.Routes").forEach((route) => {
@@ -30,7 +31,7 @@ require("./Config/Config.Routes").forEach((route) => {
 // error handler
 app.use(errorHandler);
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (req: Request, res: Response, next: NextFunction) {
   next(createError(404));
 });
 

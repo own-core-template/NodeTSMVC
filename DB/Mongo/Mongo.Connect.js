@@ -1,7 +1,6 @@
-const { CONFIGS } = require("../../Config/Config.App");
-
-const assert = require("assert");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import assert from "assert";
+import { CONFIGS } from "../../Config/Config.App";
 
 const uri = CONFIGS.DB.MONGODB.LOCAL + CONFIGS.DB.MONGODB.NAME;
 mongoose.connect(

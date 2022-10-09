@@ -1,4 +1,4 @@
-module.exports.CONFIGS = {
+export const CONFIGS = {
   NODE_ENV: "development",
   SERVER: {
     PORT: 8888,

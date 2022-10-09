@@ -1,5 +1,5 @@
 module.exports = [
-  async (req, res, next) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     console.log("PASS XXXX", req.baseUrl);
     next();
   },

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const { CONFIGS } = require("../Config/Config.App");
 
-class Email {
+export default class Email {
   constructor(user, url) {
     this.to = user.email;
     this.firstName = user.profile?.display_name.split(" ")[0];

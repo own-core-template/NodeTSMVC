@@ -1,2 +1,2 @@
-require("./Mongo/Mongo.Connect");
+improt * from "./Mongo/Mongo.Connect";
 // require("./MySql/MySql.Connect");

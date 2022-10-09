@@ -1,15 +1,15 @@
-const { XXXXModel } = require("../Models/Models.XXXX");
+const { YYYYModel } = require("../Models/Models.YYYY");
 const { BCRUD } = require("../Base/CRUD");
 
 const { objContainKey } = require("../Utils/Utils.Common");
 
 module.exports = {
-  XXXXPage: async (req, res, next) => {
-    const CRUD = new BCRUD(res, XXXXModel);
+  YYYYPage: async (req: Request, res: Response, next: NextFunction) => {
+    const CRUD = new BCRUD(res, YYYYModel);
 
     let query = req.query;
     if (!objContainKey(query, "api")) {
-      return res.render("XXXXPage", { title: "XXXX" });
+      return res.render("YYYYPage", { title: "YYYY" });
     }
 
     switch (String(query.api).toLowerCase()) {
