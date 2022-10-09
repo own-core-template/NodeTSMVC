@@ -1,1 +1,1 @@
-const redis = require("redis");
+import redis from "redis";

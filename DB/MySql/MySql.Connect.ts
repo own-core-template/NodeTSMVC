@@ -2,7 +2,7 @@ import { CONFIGS } from "../../Config/Config.App";
 
 import mysql, { MysqlError } from "mysql";
 
-module.exports = mysql
+export = mysql
   .createConnection({
     host: CONFIGS.DB.MYSQL.HOST,
     database: CONFIGS.DB.MYSQL.NAME,

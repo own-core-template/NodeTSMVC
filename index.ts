@@ -1,6 +1,12 @@
 import http from "http";
 import createError from "http-errors";
-import express, { Router, Request, Response, NextFunction } from "express";
+import express, {
+  Express,
+  Router,
+  Request,
+  Response,
+  NextFunction,
+} from "express";
 
 import path from "path";
 import { GlobalMiddleware } from "./Config/Config.GlobalMiddleware";
@@ -10,7 +16,7 @@ import errorHandler from "./Middleware/Middleware.ErrorHandler";
 import { IRouter, Routers } from "./Config/Config.Routes";
 import BROUTER from "./Base/ROUTER";
 
-const app = express();
+const app: Express = express();
 const server = http.createServer(app);
 const PORT = 8888;
 

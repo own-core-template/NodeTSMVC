@@ -1,4 +1,4 @@
-import {
+import mongoose, {
   model,
   CompileModelOptions,
   Schema,
@@ -6,8 +6,10 @@ import {
   Document,
   Model,
 } from "mongoose";
+import Inc from "mongoose-sequence";
 import softDel, { SoftDeleteModel, SoftDeleteDocument } from "mongoose-delete";
-import AutoIncrement from "mongoose-sequence";
+
+// const AutoIncrement = Inc(mongoose);
 
 export class BMODEL<T> {
   private m_name: string;
@@ -53,10 +55,10 @@ export class BMODEL<T> {
 
     // Start Add Plugins
 
-    this.m_schema.plugin(AutoIncrement(this.m_schema), {
-      id: `${this.m_collection}_id_counter`,
-      reference_fields: this.m_referenceFields,
-    });
+    // this.m_schema.plugin(AutoIncrement(this.m_schema), {
+    //   id: `${this.m_collection}_id_counter`,
+    //   reference_fields: this.m_referenceFields,
+    // });
 
     this.m_schema.plugin(softDel, {
       deletedBy: true,
