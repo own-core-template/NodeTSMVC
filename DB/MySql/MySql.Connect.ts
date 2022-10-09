@@ -1,6 +1,6 @@
-const { CONFIGS } = require("../../Config/Config.App");
+import { CONFIGS } from "../../Config/Config.App";
 
-const mysql = require("mysql");
+import mysql, { MysqlError } from "mysql";
 
 module.exports = mysql
   .createConnection({
@@ -9,7 +9,7 @@ module.exports = mysql
     user: CONFIGS.DB.MYSQL.USERNAME,
     password: CONFIGS.DB.MYSQL.PASSWORD,
   })
-  .connect((err) => {
+  .connect((err: MysqlError) => {
     if (err) throw err;
     console.log("Mysql connected!!!");
   });

@@ -6,6 +6,10 @@ import path from "path";
 import { GlobalMiddleware } from "./Config/Config.GlobalMiddleware";
 import { setViews, setPublic } from "./Config/Config.View";
 import errorHandler from "./Middleware/Middleware.ErrorHandler";
+
+import { IRouter, Routers } from "./Config/Config.Routes";
+import BROUTER from "./Base/ROUTER";
+
 const app = express();
 const server = http.createServer(app);
 const PORT = 8888;
@@ -13,7 +17,7 @@ const PORT = 8888;
 // use global middlewares
 app.use(GlobalMiddleware);
 
-import DBconn from "./DB/DB.Connect";
+import * as DBconn from "./DB/DB.Connect";
 
 // init view engine
 setViews(app, __dirname);
@@ -22,9 +26,11 @@ setViews(app, __dirname);
 setPublic(app, express, __dirname);
 
 // init routes
-require("./Config/Config.Routes").forEach((route) => {
-  const _r = express.Router();
-  route.routes.forEach((route) => _r.use(route.path(), route.setRouter()));
+Routers.forEach((route: IRouter) => {
+  const _r: Router = express.Router();
+  route.routes.forEach((route: BROUTER) =>
+    _r.use(route.routerName(), route.setRouter())
+  );
   app.use(route.path, route.middleware, _r);
 });
 

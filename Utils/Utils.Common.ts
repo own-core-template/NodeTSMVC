@@ -1,3 +1,3 @@
-module.exports.objContainKey = (obj, key) => {
+export const objContainKey = (obj: any, key: string) => {
   return obj.hasOwnProperty(key);
 };

@@ -1,16 +1,22 @@
 import { Request, Response, NextFunction } from "express";
-export const Routes = [
+import XXXX from "../Routes/Routes.XXXX";
+import YYYY from "../Routes/Routes.YYYY";
+
+export interface IRouter {
+  path: string | string[];
+  middleware: ((req: Request, res: Response, next: NextFunction) => void)[];
+  routes: any;
+}
+
+export const Routers: IRouter[] = [
   {
     path: ["/main", "/"],
     middleware: [
       (req: Request, res: Response, next: NextFunction) => {
-        // console.log(req.baseUrl);
+        console.log(req.baseUrl);
         next();
       },
     ],
-    routes: [
-      require("../Routes/Routes.XXXX"),
-      require("../Routes/Routes.YYYY"),
-    ],
+    routes: [XXXX, YYYY],
   },
 ];

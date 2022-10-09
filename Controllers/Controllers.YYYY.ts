@@ -1,10 +1,14 @@
+import { Request, Response, NextFunction } from "express";
 const { YYYYModel } = require("../Models/Models.YYYY");
-const { BCRUD } = require("../Base/CRUD");
+import { BCRUD } from "../Base/CRUD";
+import { objContainKey } from "../Utils/Utils.Common";
 
-const { objContainKey } = require("../Utils/Utils.Common");
-
-module.exports = {
-  YYYYPage: async (req: Request, res: Response, next: NextFunction) => {
+export = {
+  YYYYPage: async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     const CRUD = new BCRUD(res, YYYYModel);
 
     let query = req.query;
@@ -16,7 +20,8 @@ module.exports = {
       case "json":
         return await CRUD.getAuthor();
       case "xml":
-        return res.status(200).send("XML API");
+        res.status(200).send("XML API");
+        return;
     }
   },
 };

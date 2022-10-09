@@ -6,8 +6,7 @@ const uri = CONFIGS.DB.MONGODB.LOCAL + CONFIGS.DB.MONGODB.NAME;
 mongoose.connect(
   uri,
   {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // options
   },
   (err) => {
     assert.equal(null, err);

@@ -1,7 +1,7 @@
-const { BROUTER } = require("../Base/ROUTER");
-const CTRL = require("../Controllers/Controllers.XXXX");
-const MIDDLEWARE = require("../Middleware/Routes/Middleware.Routes.XXXX");
-export default class XXXXRoutes extends BROUTER {
+import BROUTER, { METHODS } from "../Base/ROUTER";
+import ctrl from "../Controllers/Controllers.XXXX";
+import middleware from "../Middleware/Routes/Middleware.Routes.XXXX";
+class XXXXRoutes extends BROUTER {
   constructor() {
     super("/XXXX");
   }
@@ -9,19 +9,19 @@ export default class XXXXRoutes extends BROUTER {
   R = [
     {
       path: ["/", "/page1"],
-      method: this.GET,
-      handler: CTRL.XXXXPage,
+      method: METHODS.GET,
+      handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: MIDDLEWARE,
+      middleware: middleware,
     },
     {
       path: "/page2",
-      method: this.GET,
-      handler: CTRL.XXXXPage,
+      method: METHODS.GET,
+      handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: MIDDLEWARE,
+      middleware: middleware,
     },
   ];
 }
 
-module.exports = new XXXXRoutes();
+export = new XXXXRoutes();

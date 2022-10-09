@@ -2,31 +2,34 @@ import { Router, Request, Response, NextFunction } from "express";
 import { catchAsync } from "../Utils/Utils.CatchAsync";
 
 export enum METHODS {
+  ALL = "all",
   GET = "get",
   POST = "post",
   PUT = "put",
-  PATCH = "patch",
   DELETE = "delete",
+  PATCH = "patch",
+  OPTIONS = "options",
+  HEAD = "head",
 }
 
 interface IRoute {
-  path: string | [string];
+  path: string | string[];
   method: METHODS;
   handler: (req: Request, res: Response, next: NextFunction) => Promise<void>;
-  permissions: [string];
+  permissions: string[];
   middleware: ((req: Request, res: Response, next: NextFunction) => void)[];
 }
 
-export default abstract class ROUTER {
-  private m_routerName: string;
+export default abstract class BROUTER {
   private m_router: Router = Router();
-  protected abstract readonly R: Array<IRoute>;
+  private m_routerName: string;
+  protected abstract readonly R: IRoute[];
 
   constructor(p_routerName: string) {
     this.m_routerName = p_routerName;
   }
 
-  public path() {
+  public routerName() {
     return this.m_routerName;
   }
 
@@ -47,5 +50,3 @@ export default abstract class ROUTER {
     return this.m_router;
   }
 }
-
-module.exports.BROUTER = ROUTER;

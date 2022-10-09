@@ -1,14 +1,21 @@
-import mongoose from "mongoose";
-import softDel from "mongoose-delete";
+import {
+  model,
+  CompileModelOptions,
+  Schema,
+  connect,
+  Document,
+  Model,
+} from "mongoose";
+import softDel, { SoftDeleteModel, SoftDeleteDocument } from "mongoose-delete";
 import AutoIncrement from "mongoose-sequence";
-let { Schema } = mongoose;
-export default class MODEL {
+
+export class BMODEL<T> {
   private m_name: string;
   private m_collection: string | undefined;
   private m_definition: any;
-  private m_opitons: mongoose.CompileModelOptions | undefined;
-  private m_index: object;
-  private m_referenceFields: [string];
+  private m_opitons: CompileModelOptions | undefined;
+  private m_index: any;
+  private m_referenceFields?: string[];
   private m_schema: any;
   public instance: any;
 
@@ -16,9 +23,9 @@ export default class MODEL {
     p_name: string,
     p_collection: string,
     p_definition: any,
-    p_options: object,
-    p_index: object,
-    p_referenceFields: [string]
+    p_options: any,
+    p_index: any,
+    p_referenceFields?: string[]
   ) {
     this.m_name = p_name;
     this.m_collection = p_collection;
@@ -29,7 +36,7 @@ export default class MODEL {
   }
 
   setup() {
-    this.m_schema = new Schema(
+    this.m_schema = new Schema<T>(
       {
         _id: { type: Number },
         ...this.m_definition,
@@ -52,6 +59,8 @@ export default class MODEL {
     });
 
     this.m_schema.plugin(softDel, {
+      deletedBy: true,
+      deletedBytType: String,
       overrideMethods: "all",
       deletedAt: true,
     });
@@ -62,11 +71,7 @@ export default class MODEL {
   }
 
   init() {
-    this.instance = mongoose.model(
-      this.m_name,
-      this.m_schema,
-      this.m_collection
-    );
+    this.instance = model<T>(this.m_name, this.m_schema, this.m_collection);
     return this;
   }
 }
