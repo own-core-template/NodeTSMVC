@@ -9,8 +9,6 @@ import mongoose, {
 import Inc from "mongoose-sequence";
 import softDel, { SoftDeleteModel, SoftDeleteDocument } from "mongoose-delete";
 
-// const AutoIncrement = Inc(mongoose);
-
 export class BMODEL<T> {
   private m_name: string;
   private m_collection: string | undefined;
@@ -40,11 +38,11 @@ export class BMODEL<T> {
   setup() {
     this.m_schema = new Schema<T>(
       {
-        _id: { type: Number },
+        // _id: { type: Number },
         ...this.m_definition,
       },
       {
-        _id: false,
+        // _id: false,
         versionKey: false,
         timestamps: true,
         ...this.m_opitons,
@@ -55,7 +53,7 @@ export class BMODEL<T> {
 
     // Start Add Plugins
 
-    // this.m_schema.plugin(AutoIncrement(this.m_schema), {
+    // this.m_schema.plugin(Inc, {
     //   id: `${this.m_collection}_id_counter`,
     //   reference_fields: this.m_referenceFields,
     // });

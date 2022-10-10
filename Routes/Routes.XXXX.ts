@@ -1,6 +1,7 @@
+import { Route } from "tsoa";
 import BROUTER, { METHODS } from "../Base/ROUTER";
 import ctrl from "../Controllers/Controllers.XXXX";
-import middleware from "../Middleware/Routes/Middleware.Routes.XXXX";
+import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
 class XXXXRoutes extends BROUTER {
   constructor() {
     super("/XXXX");
@@ -8,18 +9,18 @@ class XXXXRoutes extends BROUTER {
 
   R = [
     {
-      path: ["/", "/page1"],
+      path: ["/", "/page"],
       method: METHODS.GET,
       handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: middleware,
+      middleware: XXXXMiddleware.get,
     },
     {
-      path: "/page2",
-      method: METHODS.GET,
+      path: ["/create", "/new"],
+      method: METHODS.POST,
       handler: ctrl.XXXXPage,
       permissions: [],
-      middleware: middleware,
+      middleware: XXXXMiddleware.post,
     },
   ];
 }

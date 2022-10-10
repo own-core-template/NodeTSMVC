@@ -1,6 +1,12 @@
 import { Model } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
+import Joi from "joi";
 
+export const JoiYYYY = Joi.object().keys({
+  KKKK: Joi.string().alphanum().min(3).max(30).required(),
+  TTTT: Joi.number().integer().min(1970).max(2013),
+  JJJJ: Joi.boolean(),
+});
 interface IYYYY {
   KKKK: string;
   TTTT: number;
@@ -21,6 +27,8 @@ export const YYYYModel: Model<IYYYY> = model.instance;
 
 // const YYYY = new YYYYModel({
 //   KKKK: "Bill",
-//   TTTT: "bill@initech.com",
-//   JJJJ: "https://i.imgur.com/dM7Thhn.png",
+//   TTTT: 12345,
+//   JJJJ: true,
 // });
+
+// YYYYModel.create(YYYY);

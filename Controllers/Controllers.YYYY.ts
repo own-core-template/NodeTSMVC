@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-const { YYYYModel } = require("../Models/Models.YYYY");
+import { YYYYModel } from "../Models/Models.YYYY";
 import { BCRUD } from "../Base/CRUD";
 import { objContainKey } from "../Utils/Utils.Common";
+import { Route, Get } from "tsoa";
 
-export = {
-  YYYYPage: async (
+@Route("YYYY")
+class YYYYController {
+  @Get("/,/page")
+  public async YYYYPage(
     req: Request,
     res: Response,
     next: NextFunction
-  ): Promise<void> => {
+  ): Promise<void> {
     const CRUD = new BCRUD(res, YYYYModel);
 
     let query = req.query;
@@ -23,5 +26,7 @@ export = {
         res.status(200).send("XML API");
         return;
     }
-  },
-};
+  }
+}
+
+export = new YYYYController();

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-const AppError = require("../Utils/Utils.APPError");
+import AppError from "../Utils/Utils.APPError";
 
 const handleCastErrorDB = (err: any) => {
   const message = `Invalid ${err.path}: ${err.value}.`;
@@ -93,8 +93,13 @@ const sendErrorProd = (err: any, req: Request, res: Response) => {
   });
 };
 
-export = (err: any, req: Request, res: Response, next: NextFunction) => {
-  // console.log(err.stack);
+export const ErrorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  console.log("ERROR", err);
 
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";

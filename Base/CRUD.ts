@@ -1,6 +1,6 @@
 import { APIFeatures } from "../Utils/Utils.APIFeatures";
 import { sendError, sendSuccess } from "../Utils/Utils.Response";
-import { Model } from "mongoose";
+import { Document, Model } from "mongoose";
 import { Request, Response, NextFunction } from "express";
 import {
   mongoEpressions,
@@ -10,12 +10,13 @@ import {
   multipleMongooseToObject,
   objectId,
 } from "../Utils/Utils.MongoFeatures";
+import { SoftDeleteModel } from "mongoose-delete";
 
 export class BCRUD<T> {
   public m_res: Response;
-  public m_model: Model<T>;
+  public m_model: any;
 
-  constructor(p_res: Response, p_model: Model<T>) {
+  constructor(p_res: Response, p_model: any) {
     this.m_res = p_res;
     this.m_model = p_model;
   }
@@ -61,11 +62,11 @@ export class BCRUD<T> {
     else sendSuccess(this.m_res, doc, "Update Successful");
   }
 
-  // async deleteOne(p_id: string) {
-  //   const doc = await this.m_model.deleteById(p_id);
-  //   if (!doc) sendError(this.m_res, "Can't Delete");
-  //   else sendSuccess(this.m_res, doc, "Delete Successful");
-  // }
+  async deleteOne(p_id: string) {
+    const doc = await this.m_model.deleteById(p_id);
+    if (!doc) sendError(this.m_res, "Can't Delete");
+    else sendSuccess(this.m_res, doc, "Delete Successful");
+  }
 
   async moveToTrash(p_id: string) {
     const doc = await this.m_model.findOneAndDelete({ _id: p_id });
@@ -73,9 +74,9 @@ export class BCRUD<T> {
     else sendSuccess(this.m_res, doc, "Soft Delete Successful");
   }
 
-  // async restoreOne(p_id: string) {
-  //   const doc = await this.m_model.restore({ _id: p_id });
-  //   if (!doc) sendError(this.m_res, "Can't Restore");
-  //   else sendSuccess(this.m_res, doc, "Restore Successful");
-  // }
+  async restoreOne(p_id: string) {
+    const doc = await this.m_model.restore({ _id: p_id });
+    if (!doc) sendError(this.m_res, "Can't Restore");
+    else sendSuccess(this.m_res, doc, "Restore Successful");
+  }
 }

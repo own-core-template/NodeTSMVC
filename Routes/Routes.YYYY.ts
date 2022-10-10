@@ -1,6 +1,6 @@
 import BROUTER, { METHODS } from "../Base/ROUTER";
 import ctrl from "../Controllers/Controllers.YYYY";
-import middleware from "../Middleware/Routes/Middleware.Routes.YYYY";
+import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
 class YYYYRoutes extends BROUTER {
   constructor() {
     super("/YYYY");
@@ -8,18 +8,18 @@ class YYYYRoutes extends BROUTER {
 
   R = [
     {
-      path: ["/", "/page1"],
+      path: ["/", "/page"],
       method: METHODS.GET,
       handler: ctrl.YYYYPage,
       permissions: [],
-      middleware: middleware,
+      middleware: YYYYMiddleware.get,
     },
     {
-      path: "/page2",
-      method: METHODS.GET,
+      path: ["/create", "/new"],
+      method: METHODS.POST,
       handler: ctrl.YYYYPage,
       permissions: [],
-      middleware: middleware,
+      middleware: YYYYMiddleware.post,
     },
   ];
 }
