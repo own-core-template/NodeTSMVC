@@ -1,4 +1,4 @@
-import { XXXXModel } from "../Models/Models.XXXX";
+import { IXXXX, XXXXModel } from "../Models/Models.XXXX";
 import { BCRUD } from "../Base/CRUD";
 import { Tags, Route, Get, Post, Path, Body } from "tsoa";
 
@@ -11,7 +11,7 @@ class XXXXController {
     return CRUD.getTestByID(Number(id));
   }
   @Post("/create")
-  public async createXXXX(@Body() body: any): Promise<any> {
+  public async createXXXX(@Body() body: IXXXX): Promise<any> {
     const CRUD = new BCRUD(XXXXModel);
     return CRUD.createOne(body);
   }

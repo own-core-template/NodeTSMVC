@@ -5,7 +5,48 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"IXXXX": {
+				"properties": {
+					"ZZZZ": {
+						"type": "string"
+					},
+					"WWWW": {
+						"type": "number",
+						"format": "double"
+					},
+					"TTTT": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"ZZZZ",
+					"WWWW"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IYYYY": {
+				"properties": {
+					"KKKK": {
+						"type": "string"
+					},
+					"TTTT": {
+						"type": "number",
+						"format": "double"
+					},
+					"JJJJ": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"KKKK",
+					"TTTT"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -69,7 +110,9 @@
 					"required": true,
 					"content": {
 						"application/json": {
-							"schema": {}
+							"schema": {
+								"$ref": "#/components/schemas/IXXXX"
+							}
 						}
 					}
 				}
@@ -126,7 +169,9 @@
 					"required": true,
 					"content": {
 						"application/json": {
-							"schema": {}
+							"schema": {
+								"$ref": "#/components/schemas/IYYYY"
+							}
 						}
 					}
 				}

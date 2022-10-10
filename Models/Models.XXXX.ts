@@ -7,7 +7,7 @@ export const JoiXXXX = Joi.object().keys({
   WWWW: Joi.number().integer().min(1970).max(2013),
   TTTT: Joi.boolean(),
 });
-interface IXXXX {
+export interface IXXXX {
   ZZZZ: string;
   WWWW: number;
   TTTT?: boolean;
