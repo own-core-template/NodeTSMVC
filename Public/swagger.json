@@ -59,9 +59,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/XXXX/detail/{id}": {
+		"/XXXX/test/{id}": {
 			"get": {
-				"operationId": "GetXXXX",
+				"operationId": "GetOneTestXXXX",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -88,15 +88,48 @@
 				]
 			}
 		},
-		"/XXXX/create": {
-			"post": {
-				"operationId": "CreateXXXX",
+		"/XXXX/detail/{id}": {
+			"get": {
+				"operationId": "GetOneXXXX",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"/XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/XXXX/create": {
+			"post": {
+				"operationId": "CreateOneXXXX",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
 							}
 						}
 					}
@@ -118,9 +151,9 @@
 				}
 			}
 		},
-		"/YYYY/detail/{id}": {
+		"/YYYY/test/{id}": {
 			"get": {
-				"operationId": "GetYYYY",
+				"operationId": "GetOneTestYYYY",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -147,15 +180,48 @@
 				]
 			}
 		},
-		"/YYYY/create": {
-			"post": {
-				"operationId": "CreateYYYY",
+		"/YYYY/detail/{id}": {
+			"get": {
+				"operationId": "GetOneYYYY",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"/YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/YYYY/create": {
+			"post": {
+				"operationId": "CreateOneYYYY",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
 							}
 						}
 					}

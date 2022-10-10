@@ -15,6 +15,7 @@ export class BCRUD<T> {
     this.m_model = p_model;
   }
 
+  // Test
   public async getTestByID(id: number): Promise<any> {
     return {
       ID: id,
@@ -24,12 +25,12 @@ export class BCRUD<T> {
     };
   }
 
-  async getOne(p_id: string): Promise<any> {
+  async getOne(p_id: string): Promise<T> {
     const doc = await this.m_model.findOne({ _id: p_id });
     return doc;
   }
 
-  async getMany(p_query: any): Promise<any> {
+  async getMany(p_query: any): Promise<[T]> {
     const features = new APIFeatures(this.m_model, p_query)
       .filter()
       .sort()
@@ -40,14 +41,14 @@ export class BCRUD<T> {
     // sendSuccess(this.m_res, data);
   }
 
-  async createOne(p_body: any): Promise<any> {
+  async createOne(p_body: T): Promise<T> {
     const doc = await this.m_model.create(p_body);
     return doc;
     // if (!doc) sendError(this.m_res, "Can't Create");
     // else sendSuccess(this.m_res, doc, "Create Successful");
   }
 
-  async updateOne(p_id: string, p_body: any): Promise<any> {
+  async updateOne(p_id: string, p_body: any): Promise<T> {
     let body = mongoEpressions(p_body);
     const options = { new: true, runValidators: true };
     const doc = await this.m_model.findOneAndUpdate(
