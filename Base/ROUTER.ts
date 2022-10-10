@@ -17,7 +17,11 @@ interface IRoute {
   method: METHODS;
   handler: (req: Request, res: Response, next: NextFunction) => Promise<void>;
   permissions: string[];
-  middleware: ((req: Request, res: Response, next: NextFunction) => void)[];
+  middleware: ((
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<void> | void)[];
 }
 
 export default abstract class BROUTER {

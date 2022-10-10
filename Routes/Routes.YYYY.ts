@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import BROUTER, { METHODS } from "../Base/ROUTER";
-import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
 import { isAPI } from "../Utils/Utils.Common";
 import { sendSuccess, sendError } from "../Utils/Utils.Response";
 
 import ctrl from "../Controllers/Controllers.YYYY";
+import middleware from "../Middleware/Routes/Middleware.Routes.YYYY";
 class YYYYRoutes extends BROUTER {
   constructor() {
     super("/YYYY");
@@ -16,14 +16,14 @@ class YYYYRoutes extends BROUTER {
       method: METHODS.GET,
       handler: this.YYYYPage,
       permissions: [],
-      middleware: YYYYMiddleware.get,
+      middleware: [middleware.get],
     },
     {
       path: ["/create", "/new"],
       method: METHODS.POST,
       handler: this.YYYYCreate,
       permissions: [],
-      middleware: YYYYMiddleware.post,
+      middleware: [middleware.post],
     },
   ];
 
