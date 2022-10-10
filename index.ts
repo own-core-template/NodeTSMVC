@@ -63,7 +63,7 @@ app.use(ErrorHandler);
 
 // start server
 server.listen(PORT, () => {
-  console.log("Server start on: ", PORT);
+  console.log("Server start on: ", PORT, "\nDocument: /docs");
 });
 
 module.exports = app;

@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
-
 import Joi from "joi";
+
 export const JoiXXXX = Joi.object().keys({
   ZZZZ: Joi.string().alphanum().min(3).max(30).required(),
   WWWW: Joi.number().integer().min(1970).max(2013),

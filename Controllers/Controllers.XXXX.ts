@@ -1,31 +1,19 @@
-import { Request, Response, NextFunction } from "express";
 import { XXXXModel } from "../Models/Models.XXXX";
 import { BCRUD } from "../Base/CRUD";
-import { objContainKey } from "../Utils/Utils.Common";
-import { Route, Get } from "tsoa";
+import { Tags, Route, Get, Post, Path, Body } from "tsoa";
 
 @Route("XXXX")
+@Tags("/XXXX")
 class XXXXController {
-  @Get("/,/page")
-  public async XXXXPage(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<void> {
-    const CRUD = new BCRUD(res, XXXXModel);
-
-    let query = req.query;
-    if (!objContainKey(query, "api")) {
-      return res.render("XXXXPage", { title: "XXXX" });
-    }
-
-    switch (String(query.api).toLowerCase()) {
-      case "json":
-        return await CRUD.getAuthor();
-      case "xml":
-        res.status(200).send("XML API");
-        return;
-    }
+  @Get("/detail/:id")
+  public async getXXXX(@Path() id: string): Promise<any> {
+    const CRUD = new BCRUD(XXXXModel);
+    return CRUD.getTestByID(Number(id));
+  }
+  @Post("/create")
+  public async createXXXX(@Body() body: any): Promise<any> {
+    const CRUD = new BCRUD(XXXXModel);
+    return CRUD.createOne(body);
   }
 }
 

@@ -1,8 +1,9 @@
 {
-    "entryFile": "./index.ts",
+    "entryFile": "index.ts",
     "noImplicitAdditionalProperties": "throw-on-extras",
     "spec": {
         "outputDirectory": "Public",
         "specVersion": 3
-    }
+    },
+    "ignore": ["**/node_modules/**"]
 }
