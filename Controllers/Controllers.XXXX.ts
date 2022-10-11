@@ -20,8 +20,10 @@ import {
 import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
 
 const middleware = new XXXXMiddleware();
+@Tags("XXXX")
 @Route("/XXXX")
 export class XXXXController {
+  @Tags("Test")
   @Get("/test/:id")
   @SuccessResponse(200, "XXXX Test")
   public async getOneTestXXXX(@Path() id: string): Promise<any> {
@@ -30,6 +32,7 @@ export class XXXXController {
     return data;
   }
 
+  @Tags("Detail")
   @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Detail")
@@ -39,6 +42,7 @@ export class XXXXController {
     return data;
   }
 
+  @Tags("Create")
   @Post("/create")
   @SuccessResponse(201, "Created") // Custom success response
   @Middlewares([middleware.post])

@@ -72,6 +72,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Test",
+					"XXXX"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -100,6 +104,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Detail",
+					"XXXX"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -128,6 +136,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Create",
+					"XXXX"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -155,6 +167,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Test",
+					"YYYY"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -183,6 +199,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Detail",
+					"YYYY"
+				],
 				"security": [],
 				"parameters": [
 					{
@@ -211,6 +231,10 @@
 						}
 					}
 				},
+				"tags": [
+					"Create",
+					"YYYY"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {

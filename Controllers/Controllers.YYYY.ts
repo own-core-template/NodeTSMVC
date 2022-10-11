@@ -20,8 +20,10 @@ import {
 import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
 
 const middleware = new YYYYMiddleware();
+@Tags("YYYY")
 @Route("/YYYY")
 export class YYYYController {
+  @Tags("Test")
   @Get("/test/:id")
   @SuccessResponse(200, "YYYY Test")
   public async getOneTestYYYY(@Path() id: string): Promise<any> {
@@ -30,6 +32,7 @@ export class YYYYController {
     return data;
   }
 
+  @Tags("Detail")
   @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Detail")
@@ -39,6 +42,7 @@ export class YYYYController {
     return data;
   }
 
+  @Tags("Create")
   @Post("/create")
   @SuccessResponse(201, "Created") // Custom success response
   @Middlewares([middleware.post])
