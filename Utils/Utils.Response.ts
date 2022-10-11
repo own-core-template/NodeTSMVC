@@ -5,7 +5,7 @@ export interface IResponseBAD {
 
 export interface IResponseOK {}
 
-export interface IResSoftDelete {
+export interface IResponseSoftDelete {
   acknowledged: boolean;
   modifiedCount: number;
   upsertedId: string;

@@ -15,12 +15,11 @@ import {
   Query,
   Request,
   Response,
-  Controller,
-  TsoaResponse,
 } from "tsoa";
 
 import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
-import { IResSoftDelete } from "../Utils/Utils.Response";
+import { IResponseSoftDelete } from "../Utils/Utils.Response";
+import { ProvideSingleton } from "Utils/Utils.ProvideSingleton";
 
 const middleware = new XXXXMiddleware();
 @Tags("XXXX")
@@ -92,10 +91,11 @@ export class XXXXController {
     const data = await CRUD.updateOne(id, body);
     return data;
   }
+
   @Delete("/delete/:id")
   @SuccessResponse(201, "Deleted") // Custom success response
   @Response(500, "Can't Delete")
-  public async XXXXDeleteOne(@Path() id: string): Promise<IResSoftDelete> {
+  public async XXXXDeleteOne(@Path() id: string): Promise<IResponseSoftDelete> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.deleteOne(id);
     return data;
