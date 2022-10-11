@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { JoiYYYY } from "../../Models/Models.YYYY";
 import { validateInput } from "../../Utils/Utils.Validation";
 import { Route, Middlewares } from "tsoa";
+
 @Route("YYYY")
-class YYYYMiddleware {
+export class YYYYMiddleware {
   @Middlewares()
   public async get(
     req: Request,
@@ -30,5 +31,3 @@ class YYYYMiddleware {
     next();
   }
 }
-
-export = new YYYYMiddleware();

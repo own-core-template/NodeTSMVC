@@ -26,6 +26,21 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"IResponseOK_IXXXX_": {
+				"properties": {
+					"ok": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/IXXXX"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IYYYY": {
 				"properties": {
 					"KKKK": {
@@ -43,6 +58,21 @@
 					"KKKK",
 					"TTTT"
 				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IResponseOK_IYYYY_": {
+				"properties": {
+					"ok": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/IYYYY"
+					}
+				},
 				"type": "object",
 				"additionalProperties": false
 			}
@@ -67,14 +97,13 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/IResponseOK_IXXXX_"
+								}
 							}
 						}
 					}
 				},
-				"tags": [
-					"/XXXX"
-				],
 				"security": [],
 				"parameters": [
 					{
@@ -97,15 +126,12 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IXXXX"
+									"$ref": "#/components/schemas/IResponseOK_IXXXX_"
 								}
 							}
 						}
 					}
 				},
-				"tags": [
-					"/XXXX"
-				],
 				"security": [],
 				"parameters": [
 					{
@@ -128,15 +154,12 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IXXXX"
+									"$ref": "#/components/schemas/IResponseOK_IXXXX_"
 								}
 							}
 						}
 					}
 				},
-				"tags": [
-					"/XXXX"
-				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -164,9 +187,6 @@
 						}
 					}
 				},
-				"tags": [
-					"/YYYY"
-				],
 				"security": [],
 				"parameters": [
 					{
@@ -189,15 +209,12 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IYYYY"
+									"$ref": "#/components/schemas/IResponseOK_IYYYY_"
 								}
 							}
 						}
 					}
 				},
-				"tags": [
-					"/YYYY"
-				],
 				"security": [],
 				"parameters": [
 					{
@@ -220,15 +237,12 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IYYYY"
+									"$ref": "#/components/schemas/IResponseOK_IYYYY_"
 								}
 							}
 						}
 					}
 				},
-				"tags": [
-					"/YYYY"
-				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {

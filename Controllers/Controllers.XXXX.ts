@@ -1,41 +1,53 @@
+import { IResponseBAD, IResponseOK } from "../Utils/Utils.Response";
 import { IXXXX, XXXXModel } from "../Models/Models.XXXX";
 import { BCRUD } from "../Base/CRUD";
-import { Tags, Route, Get, Post, Path, Body, SuccessResponse } from "tsoa";
-import { DataResponse } from "Utils/Utils.Response";
+import {
+  Tags,
+  Route,
+  Get,
+  Post,
+  Path,
+  Body,
+  SuccessResponse,
+  Middlewares,
+  Response,
+} from "tsoa";
 
+import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
+
+const middleware = new XXXXMiddleware();
 @Route("XXXX")
-@Tags("/XXXX")
-class XXXXController {
+export class XXXXController {
   @Get("/test/:id")
-  public async getOneTestXXXX(@Path() id: string): Promise<any> {
+  public async getOneTestXXXX(@Path() id: string): Promise<IResponseOK<IXXXX>> {
     const CRUD = new BCRUD(XXXXModel);
     return CRUD.getTestByID(Number(id));
   }
 
   @Get("/detail/:id")
-  public async getOneXXXX(@Path() id: string): Promise<DataResponse<IXXXX>> {
+  @Middlewares([middleware.get])
+  public async getOneXXXX(@Path() id: string): Promise<IResponseOK<IXXXX>> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getOne(id);
-    return {
-      ok: data == null ? false : true,
+    const response: IResponseOK<IXXXX> = {
+      ok: data ? true : false,
+      message: "",
       data: data,
-      message: undefined,
     };
+    return response;
   }
 
-  @SuccessResponse("201", "Created") // Custom success response
+  @SuccessResponse(201, "Created") // Custom success response
   @Post("/create")
-  public async createOneXXXX(
-    @Body() body: IXXXX
-  ): Promise<DataResponse<IXXXX>> {
+  @Middlewares([middleware.post])
+  public async createOneXXXX(@Body() body: IXXXX): Promise<IResponseOK<IXXXX>> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.createOne(body);
-    return {
-      ok: data == null ? false : true,
+    const response: IResponseOK<IXXXX> = {
+      ok: data ? true : false,
+      message: data ? "Create Successful!!!" : "Can't Create",
       data: data,
-      message: undefined,
     };
+    return response;
   }
 }
-
-export = new XXXXController();

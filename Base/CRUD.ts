@@ -48,7 +48,7 @@ export class BCRUD<T> {
     // else sendSuccess(this.m_res, doc, "Create Successful");
   }
 
-  async updateOne(p_id: string, p_body: any): Promise<T> {
+  async updateOne(p_id: string, p_body: T): Promise<T> {
     let body = mongoEpressions(p_body);
     const options = { new: true, runValidators: true };
     const doc = await this.m_model.findOneAndUpdate(

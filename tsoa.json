@@ -5,5 +5,10 @@
         "outputDirectory": "Public",
         "specVersion": 3
     },
+    "routes": {
+        "routesDir": "./Routes",
+        "middleware": "./Middleware",
+        "controllerPathGlobs": ["./Controllers/*.ts"]
+    },
     "ignore": ["**/node_modules/**"]
 }

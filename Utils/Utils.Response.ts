@@ -1,13 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 
-export interface DataResponse<T> {
+export interface IResponseOK<T> {
   ok?: boolean;
   message?: string;
   data?: T;
 }
 
+export interface IResponseBAD {
+  ok: boolean;
+  message?: string;
+  details?: { [name: string]: unknown };
+}
+
 export function sendSuccess<T>(res: Response, data?: T, msg?: string) {
-  let reply: DataResponse<T> = {
+  let reply: IResponseOK<T> = {
     ok: true,
     message: msg || "Success",
   };
@@ -16,8 +22,9 @@ export function sendSuccess<T>(res: Response, data?: T, msg?: string) {
 }
 
 export function sendError(res: Response, msg: string) {
-  res.status(500).json({
-    ok: false,
+  let reply: IResponseBAD = {
+    ok: true,
     message: msg || "Internal server error",
-  });
+  };
+  res.status(500).json(reply);
 }

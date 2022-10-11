@@ -13,8 +13,10 @@ import { GlobalMiddleware } from "./Config/Config.GlobalMiddleware";
 import { setViews, setPublic } from "./Config/Config.View";
 import { ErrorHandler } from "./Middleware/Middleware.ErrorHandler";
 
-import { IRouter, Routers } from "./Config/Config.Routes";
-import BROUTER from "./Base/ROUTER";
+import { RegisterRoutes } from "./Routes/routes";
+
+// import { IRouter, Routers } from "./Config/Config.Routes";
+// import BROUTER from "./Base/ROUTER";
 
 const app: Application = express();
 const server: http.Server = http.createServer(app);
@@ -45,13 +47,14 @@ app.use(
 );
 
 // init routes
-Routers.forEach((route: IRouter) => {
-  const _r: Router = express.Router();
-  route.routes.forEach((route: BROUTER) =>
-    _r.use(route.routerName(), route.setRouter())
-  );
-  app.use(route.path, route.middleware, _r);
-});
+RegisterRoutes(app);
+// Routers.forEach((route: IRouter) => {
+//   const _r: Router = express.Router();
+//   route.routes.forEach((route: BROUTER) =>
+//     _r.use(route.routerName(), route.setRouter())
+//   );
+//   app.use(route.path, route.middleware, _r);
+// });
 
 // catch 404 and forward to error handler
 app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {

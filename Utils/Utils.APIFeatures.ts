@@ -50,7 +50,7 @@ export class APIFeatures {
     );
     this.query = this.query
       .find(filters)
-      .lean({ virtuals: true, defaults: true });
+      .lean(/*{ virtuals: true, defaults: true }*/);
 
     return this;
   }

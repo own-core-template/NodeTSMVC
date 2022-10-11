@@ -1,11 +1,23 @@
+import { IResponseBAD, IResponseOK } from "../Utils/Utils.Response";
 import { IYYYY, YYYYModel } from "../Models/Models.YYYY";
 import { BCRUD } from "../Base/CRUD";
-import { Tags, Route, Get, Post, Path, Body, SuccessResponse } from "tsoa";
-import { DataResponse } from "Utils/Utils.Response";
+import {
+  Tags,
+  Route,
+  Get,
+  Post,
+  Path,
+  Body,
+  SuccessResponse,
+  Response,
+  Middlewares,
+} from "tsoa";
 
+import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
+
+const middleware = new YYYYMiddleware();
 @Route("YYYY")
-@Tags("/YYYY")
-class YYYYController {
+export class YYYYController {
   @Get("/test/:id")
   public async getOneTestYYYY(@Path() id: string): Promise<any> {
     const CRUD = new BCRUD(YYYYModel);
@@ -13,29 +25,29 @@ class YYYYController {
   }
 
   @Get("/detail/:id")
-  public async getOneYYYY(@Path() id: string): Promise<DataResponse<IYYYY>> {
+  @Middlewares([middleware.get])
+  public async getOneYYYY(@Path() id: string): Promise<IResponseOK<IYYYY>> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getOne(id);
-    return {
-      ok: data == null ? false : true,
+    const response: IResponseOK<IYYYY> = {
+      ok: data ? true : false,
+      message: "",
       data: data,
-      message: undefined,
     };
+    return response;
   }
 
-  @SuccessResponse("201", "Created") // Custom success response
+  @SuccessResponse(201, "Created") // Custom success response
   @Post("/create")
-  public async createOneYYYY(
-    @Body() body: IYYYY
-  ): Promise<DataResponse<IYYYY>> {
+  @Middlewares([middleware.post])
+  public async createOneYYYY(@Body() body: IYYYY): Promise<IResponseOK<IYYYY>> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.createOne(body);
-    return {
-      ok: data == null ? false : true,
+    const response: IResponseOK<IYYYY> = {
+      ok: data ? true : false,
+      message: data ? "Create Successful!!!" : "Can't Create",
       data: data,
-      message: undefined,
     };
+    return response;
   }
 }
-
-export = new YYYYController();

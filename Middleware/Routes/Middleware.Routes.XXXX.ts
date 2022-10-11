@@ -4,7 +4,7 @@ import { validateInput } from "../../Utils/Utils.Validation";
 import { Route, Middlewares } from "tsoa";
 
 @Route("XXXX")
-class XXXXMiddleware {
+export class XXXXMiddleware {
   @Middlewares()
   public async get(
     req: Request,
@@ -31,5 +31,3 @@ class XXXXMiddleware {
     next();
   }
 }
-
-export = new XXXXMiddleware();
