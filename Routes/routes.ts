@@ -12,9 +12,15 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "mongoose.Types.ObjectId": {
+        "dataType": "refAlias",
+        "type": {"dataType":"string","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IXXXX": {
         "dataType": "refObject",
         "properties": {
+            "_id": {"ref":"mongoose.Types.ObjectId"},
             "ZZZZ": {"dataType":"string","required":true},
             "WWWW": {"dataType":"double","required":true},
             "TTTT": {"dataType":"boolean"},
@@ -25,6 +31,7 @@ const models: TsoaRoute.Models = {
     "IYYYY": {
         "dataType": "refObject",
         "properties": {
+            "_id": {"ref":"mongoose.Types.ObjectId"},
             "KKKK": {"dataType":"string","required":true},
             "TTTT": {"dataType":"double","required":true},
             "JJJJ": {"dataType":"boolean"},
@@ -44,9 +51,9 @@ export function RegisterRoutes(app: express.Router) {
     // ###########################################################################################################
         app.get('/XXXX/test/:id',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
-            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.getOneTestXXXX)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXGetOneTest)),
 
-            function XXXXController_getOneTestXXXX(request: any, response: any, next: any) {
+            function XXXXController_XXXXGetOneTest(request: any, response: any, next: any) {
             const args = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
@@ -60,7 +67,7 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new XXXXController();
 
 
-              const promise = controller.getOneTestXXXX.apply(controller, validatedArgs as any);
+              const promise = controller.XXXXGetOneTest.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
@@ -69,9 +76,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/XXXX/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
-            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXDetailPage)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXGetOne)),
 
-            function XXXXController_XXXXDetailPage(request: any, response: any, next: any) {
+            function XXXXController_XXXXGetOne(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
@@ -87,7 +94,33 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new XXXXController();
 
 
-              const promise = controller.XXXXDetailPage.apply(controller, validatedArgs as any);
+              const promise = controller.XXXXGetOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/XXXX',
+            ...(fetchMiddlewares<RequestHandler>(XXXXController)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXGetMany)),
+
+            function XXXXController_XXXXGetMany(request: any, response: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    api: {"in":"query","name":"api","dataType":"boolean"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new XXXXController();
+
+
+              const promise = controller.XXXXGetMany.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
@@ -96,9 +129,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/XXXX/create',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
-            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.createOneXXXX)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXCreateOne)),
 
-            function XXXXController_createOneXXXX(request: any, response: any, next: any) {
+            function XXXXController_XXXXCreateOne(request: any, response: any, next: any) {
             const args = {
                     body: {"in":"body","name":"body","required":true,"ref":"IXXXX"},
             };
@@ -112,7 +145,58 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new XXXXController();
 
 
-              const promise = controller.createOneXXXX.apply(controller, validatedArgs as any);
+              const promise = controller.XXXXCreateOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 201, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/XXXX/update/:id',
+            ...(fetchMiddlewares<RequestHandler>(XXXXController)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXUpdateOne)),
+
+            function XXXXController_XXXXUpdateOne(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    body: {"in":"body","name":"body","required":true,"ref":"IXXXX"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new XXXXController();
+
+
+              const promise = controller.XXXXUpdateOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 201, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/XXXX/delete/:id',
+            ...(fetchMiddlewares<RequestHandler>(XXXXController)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXDeleteOne)),
+
+            function XXXXController_XXXXDeleteOne(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new XXXXController();
+
+
+              const promise = controller.XXXXDeleteOne.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 201, next);
             } catch (err) {
                 return next(err);
@@ -121,9 +205,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/YYYY/test/:id',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
-            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.getOneTestYYYY)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYGetOneTest)),
 
-            function YYYYController_getOneTestYYYY(request: any, response: any, next: any) {
+            function YYYYController_YYYYGetOneTest(request: any, response: any, next: any) {
             const args = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
@@ -137,7 +221,7 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new YYYYController();
 
 
-              const promise = controller.getOneTestYYYY.apply(controller, validatedArgs as any);
+              const promise = controller.YYYYGetOneTest.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
@@ -146,9 +230,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/YYYY/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
-            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYDetailPage)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYGetOne)),
 
-            function YYYYController_YYYYDetailPage(request: any, response: any, next: any) {
+            function YYYYController_YYYYGetOne(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
@@ -164,7 +248,33 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new YYYYController();
 
 
-              const promise = controller.YYYYDetailPage.apply(controller, validatedArgs as any);
+              const promise = controller.YYYYGetOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/YYYY',
+            ...(fetchMiddlewares<RequestHandler>(YYYYController)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYGetMany)),
+
+            function YYYYController_YYYYGetMany(request: any, response: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    api: {"in":"query","name":"api","dataType":"boolean"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new YYYYController();
+
+
+              const promise = controller.YYYYGetMany.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
@@ -173,9 +283,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/YYYY/create',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
-            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.createOneYYYY)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYCreateOne)),
 
-            function YYYYController_createOneYYYY(request: any, response: any, next: any) {
+            function YYYYController_YYYYCreateOne(request: any, response: any, next: any) {
             const args = {
                     body: {"in":"body","name":"body","required":true,"ref":"IYYYY"},
             };
@@ -189,7 +299,58 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new YYYYController();
 
 
-              const promise = controller.createOneYYYY.apply(controller, validatedArgs as any);
+              const promise = controller.YYYYCreateOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 201, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/YYYY/update/:id',
+            ...(fetchMiddlewares<RequestHandler>(YYYYController)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYUpdateOne)),
+
+            function YYYYController_YYYYUpdateOne(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    body: {"in":"body","name":"body","required":true,"ref":"IYYYY"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new YYYYController();
+
+
+              const promise = controller.YYYYUpdateOne.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, 201, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/YYYY/delete/:id',
+            ...(fetchMiddlewares<RequestHandler>(YYYYController)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYDeleteOne)),
+
+            function YYYYController_YYYYDeleteOne(request: any, response: any, next: any) {
+            const args = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new YYYYController();
+
+
+              const promise = controller.YYYYDeleteOne.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, 201, next);
             } catch (err) {
                 return next(err);

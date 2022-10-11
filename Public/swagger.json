@@ -26,6 +26,37 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"IResSoftDelete": {
+				"properties": {
+					"acknowledged": {
+						"type": "boolean"
+					},
+					"modifiedCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"upsertedId": {
+						"type": "string"
+					},
+					"upsertedCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"matchedCount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"acknowledged",
+					"modifiedCount",
+					"upsertedId",
+					"upsertedCount",
+					"matchedCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IYYYY": {
 				"properties": {
 					"KKKK": {
@@ -61,7 +92,7 @@
 	"paths": {
 		"/XXXX/test/{id}": {
 			"get": {
-				"operationId": "GetOneTestXXXX",
+				"operationId": "XXXXGetOneTest",
 				"responses": {
 					"200": {
 						"description": "XXXX Test",
@@ -73,7 +104,6 @@
 					}
 				},
 				"tags": [
-					"Test",
 					"XXXX"
 				],
 				"security": [],
@@ -91,7 +121,7 @@
 		},
 		"/XXXX/detail/{id}": {
 			"get": {
-				"operationId": "XXXXDetailPage",
+				"operationId": "XXXXGetOne",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -110,7 +140,6 @@
 					}
 				},
 				"tags": [
-					"Detail",
 					"XXXX"
 				],
 				"security": [],
@@ -134,9 +163,48 @@
 				]
 			}
 		},
+		"/XXXX": {
+			"get": {
+				"operationId": "XXXXGetMany",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IXXXX"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "api",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				]
+			}
+		},
 		"/XXXX/create": {
 			"post": {
-				"operationId": "CreateOneXXXX",
+				"operationId": "XXXXCreateOne",
 				"responses": {
 					"201": {
 						"description": "Created",
@@ -147,10 +215,12 @@
 								}
 							}
 						}
+					},
+					"500": {
+						"description": "Can't Created"
 					}
 				},
 				"tags": [
-					"Create",
 					"XXXX"
 				],
 				"security": [],
@@ -167,9 +237,87 @@
 				}
 			}
 		},
+		"/XXXX/update/{id}": {
+			"put": {
+				"operationId": "XXXXUpdateOne",
+				"responses": {
+					"201": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IXXXX"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Update"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IXXXX"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/XXXX/delete/{id}": {
+			"delete": {
+				"operationId": "XXXXDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IResSoftDelete"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Delete"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/YYYY/test/{id}": {
 			"get": {
-				"operationId": "GetOneTestYYYY",
+				"operationId": "YYYYGetOneTest",
 				"responses": {
 					"200": {
 						"description": "YYYY Test",
@@ -181,7 +329,6 @@
 					}
 				},
 				"tags": [
-					"Test",
 					"YYYY"
 				],
 				"security": [],
@@ -199,7 +346,7 @@
 		},
 		"/YYYY/detail/{id}": {
 			"get": {
-				"operationId": "YYYYDetailPage",
+				"operationId": "YYYYGetOne",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -218,7 +365,6 @@
 					}
 				},
 				"tags": [
-					"Detail",
 					"YYYY"
 				],
 				"security": [],
@@ -242,9 +388,48 @@
 				]
 			}
 		},
+		"/YYYY": {
+			"get": {
+				"operationId": "YYYYGetMany",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IYYYY"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "api",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				]
+			}
+		},
 		"/YYYY/create": {
 			"post": {
-				"operationId": "CreateOneYYYY",
+				"operationId": "YYYYCreateOne",
 				"responses": {
 					"201": {
 						"description": "Created",
@@ -255,10 +440,12 @@
 								}
 							}
 						}
+					},
+					"500": {
+						"description": "Can't Created"
 					}
 				},
 				"tags": [
-					"Create",
 					"YYYY"
 				],
 				"security": [],
@@ -273,6 +460,82 @@
 						}
 					}
 				}
+			}
+		},
+		"/YYYY/update/{id}": {
+			"put": {
+				"operationId": "YYYYUpdateOne",
+				"responses": {
+					"201": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Update"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IYYYY"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/YYYY/delete/{id}": {
+			"delete": {
+				"operationId": "YYYYDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Delete"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},

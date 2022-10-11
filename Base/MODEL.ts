@@ -5,9 +5,10 @@ import mongoose, {
   connect,
   Document,
   Model,
+  HydratedDocument,
 } from "mongoose";
 import Inc from "mongoose-sequence";
-import softDel, { SoftDeleteModel, SoftDeleteDocument } from "mongoose-delete";
+import softDel, { SoftDeleteModel } from "mongoose-delete";
 
 export class BMODEL<T> {
   private m_name: string;
@@ -71,7 +72,8 @@ export class BMODEL<T> {
   }
 
   init() {
-    this.instance = model<T>(this.m_name, this.m_schema, this.m_collection);
+    (<Model<T> | SoftDeleteModel<any> | HydratedDocument<T>>this.instance) =
+      model<T>(this.m_name, this.m_schema, this.m_collection);
     return this;
   }
 }

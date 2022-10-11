@@ -1,5 +1,20 @@
-import { Request, Response, NextFunction } from "express";
+export interface IResponseBAD {
+  message: string;
+  details: { [name: string]: unknown };
+}
 
+export interface IResponseOK {}
+
+export interface IResSoftDelete {
+  acknowledged: boolean;
+  modifiedCount: number;
+  upsertedId: string;
+  upsertedCount: number;
+  matchedCount: number;
+}
+
+/* 
+import { Request, Response, NextFunction } from "express";
 export interface IResponseOK<T> {
   ok?: boolean;
   message?: string;
@@ -7,7 +22,7 @@ export interface IResponseOK<T> {
 }
 
 export interface IResponseBAD {
-  ok: boolean;
+  ok?: boolean;
   message?: string;
   details?: { [name: string]: unknown };
 }
@@ -23,8 +38,9 @@ export function sendSuccess<T>(res: Response, data?: T, msg?: string) {
 
 export function sendError(res: Response, msg: string) {
   let reply: IResponseBAD = {
-    ok: true,
+    ok: false,
     message: msg || "Internal server error",
   };
   res.status(500).json(reply);
 }
+*/

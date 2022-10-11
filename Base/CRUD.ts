@@ -1,3 +1,5 @@
+import { HydratedDocument, Model } from "mongoose";
+import { SoftDeleteModel } from "mongoose-delete";
 import { APIFeatures } from "../Utils/Utils.APIFeatures";
 import {
   mongoEpressions,
@@ -37,15 +39,15 @@ export class BCRUD<T> {
       .limitFields()
       .paginate();
     const doc = await features.query;
-    return doc;
     // sendSuccess(this.m_res, data);
+    return doc;
   }
 
   public async createOne(p_body: T): Promise<T> {
     const doc = await this.m_model.create(p_body);
-    return doc;
     // if (!doc) sendError(this.m_res, "Can't Create");
     // else sendSuccess(this.m_res, doc, "Create Successful");
+    return doc;
   }
 
   public async updateOne(p_id: string, p_body: T): Promise<T> {
@@ -62,7 +64,7 @@ export class BCRUD<T> {
   }
 
   public async deleteOne(p_id: string): Promise<any> {
-    const doc = await this.m_model.deleteById(p_id);
+    const doc = await (<SoftDeleteModel<any>>this.m_model).deleteById(p_id);
     // if (!doc) sendError(this.m_res, "Can't Delete");
     // else sendSuccess(this.m_res, doc, "Delete Successful");
     return doc;
@@ -76,9 +78,11 @@ export class BCRUD<T> {
   }
 
   public async restoreOne(p_id: string): Promise<any> {
-    const doc = await this.m_model.restore({ _id: p_id });
-    return doc;
+    const doc = await (<SoftDeleteModel<any>>this.m_model).restore({
+      _id: p_id,
+    });
     // if (!doc) sendError(this.m_res, "Can't Restore");
     // else sendSuccess(this.m_res, doc, "Restore Successful");
+    return doc;
   }
 }
