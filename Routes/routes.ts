@@ -73,7 +73,9 @@ export function RegisterRoutes(app: express.Router) {
 
             function XXXXController_XXXXDetailPage(request: any, response: any, next: any) {
             const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    api: {"in":"query","name":"api","dataType":"boolean"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -148,7 +150,9 @@ export function RegisterRoutes(app: express.Router) {
 
             function YYYYController_YYYYDetailPage(request: any, response: any, next: any) {
             const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                    api: {"in":"query","name":"api","dataType":"boolean"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

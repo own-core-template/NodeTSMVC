@@ -36,10 +36,17 @@ export class XXXXController {
   @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Detail")
-  public async XXXXDetailPage(@Path() id: string): Promise<IXXXX> {
+  public async XXXXDetailPage(
+    @Request() req: express.Request,
+    @Path() id: string,
+    @Query() api?: boolean
+  ): Promise<IXXXX | void> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getOne(id);
-    return data;
+    if (api) return data;
+    const res = (<any>req).res as express.Response;
+    res.render("XXXXPage", { title: "XXXX" });
+    return;
   }
 
   @Tags("Create")

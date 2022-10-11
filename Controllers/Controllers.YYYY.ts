@@ -36,10 +36,17 @@ export class YYYYController {
   @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Detail")
-  public async YYYYDetailPage(@Path() id: string): Promise<IYYYY> {
+  public async YYYYDetailPage(
+    @Request() req: express.Request,
+    @Path() id: string,
+    @Query() api?: boolean
+  ): Promise<IYYYY | void> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getOne(id);
-    return data;
+    if (api) return data;
+    const res = (<any>req).res as express.Response;
+    res.render("YYYYPage", { title: "YYYY" });
+    return;
   }
 
   @Tags("Create")
