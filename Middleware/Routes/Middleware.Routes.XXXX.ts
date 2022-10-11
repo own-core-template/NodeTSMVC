@@ -1,20 +1,22 @@
 import { Request, Response, NextFunction } from "express";
+import { isAPI } from "../../Utils/Utils.Common";
 import { JoiXXXX } from "../../Models/Models.XXXX";
 import { validateInput } from "../../Utils/Utils.Validation";
-import { Route, Middlewares } from "tsoa";
 
-@Route("XXXX")
 export class XXXXMiddleware {
-  @Middlewares()
   public async get(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    console.log("PASS XXXX GET", req.baseUrl);
+    // if (!isAPI(req.query)) {
+    //   res.render("XXXXPage", { title: "XXXX" });
+    //   return;
+    // }
+    console.log("PASS XXXX Detail - GET", req.baseUrl);
     next();
   }
-  @Middlewares()
+
   public async post(
     req: Request,
     res: Response,
@@ -22,12 +24,14 @@ export class XXXXMiddleware {
   ): Promise<void> {
     let body = req.body;
     const valid = validateInput(JoiXXXX, body);
-    if (!valid)
+    if (!valid) {
       res.status(422).json({
-        message: "Invalid request",
+        message: "Invalid Input",
         data: body,
       });
-    console.log("PASS XXXX POST", req.baseUrl);
+      return;
+    }
+    console.log("PASS XXXX Create - POST", req.baseUrl);
     next();
   }
 }

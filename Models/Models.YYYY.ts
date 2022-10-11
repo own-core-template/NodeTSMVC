@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
-import Joi, { boolean } from "joi";
+import Joi from "joi";
 
 export const JoiYYYY = Joi.object().keys({
   KKKK: Joi.string().alphanum().min(3).max(30).required(),

@@ -5,11 +5,7 @@ import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, H
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { XXXXController } from './../Controllers/Controllers.XXXX';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { XXXXMiddleware } from './../Middleware/Routes/Middleware.Routes.XXXX';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { YYYYController } from './../Controllers/Controllers.YYYY';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { YYYYMiddleware } from './../Middleware/Routes/Middleware.Routes.YYYY';
 import type { RequestHandler } from 'express';
 import * as express from 'express';
 
@@ -26,32 +22,12 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "IResponseOK_IXXXX_": {
-        "dataType": "refObject",
-        "properties": {
-            "ok": {"dataType":"boolean"},
-            "message": {"dataType":"string"},
-            "data": {"ref":"IXXXX"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IYYYY": {
         "dataType": "refObject",
         "properties": {
             "KKKK": {"dataType":"string","required":true},
             "TTTT": {"dataType":"double","required":true},
             "JJJJ": {"dataType":"boolean"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "IResponseOK_IYYYY_": {
-        "dataType": "refObject",
-        "properties": {
-            "ok": {"dataType":"boolean"},
-            "message": {"dataType":"string"},
-            "data": {"ref":"IYYYY"},
         },
         "additionalProperties": false,
     },
@@ -85,7 +61,7 @@ export function RegisterRoutes(app: express.Router) {
 
 
               const promise = controller.getOneTestXXXX.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, undefined, next);
+              promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
             }
@@ -93,9 +69,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/XXXX/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
-            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.getOneXXXX)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXDetailPage)),
 
-            function XXXXController_getOneXXXX(request: any, response: any, next: any) {
+            function XXXXController_XXXXDetailPage(request: any, response: any, next: any) {
             const args = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
@@ -109,7 +85,7 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new XXXXController();
 
 
-              const promise = controller.getOneXXXX.apply(controller, validatedArgs as any);
+              const promise = controller.XXXXDetailPage.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);
@@ -160,7 +136,7 @@ export function RegisterRoutes(app: express.Router) {
 
 
               const promise = controller.getOneTestYYYY.apply(controller, validatedArgs as any);
-              promiseHandler(controller, promise, response, undefined, next);
+              promiseHandler(controller, promise, response, 200, next);
             } catch (err) {
                 return next(err);
             }
@@ -168,9 +144,9 @@ export function RegisterRoutes(app: express.Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/YYYY/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
-            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.getOneYYYY)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYDetailPage)),
 
-            function YYYYController_getOneYYYY(request: any, response: any, next: any) {
+            function YYYYController_YYYYDetailPage(request: any, response: any, next: any) {
             const args = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
@@ -184,7 +160,7 @@ export function RegisterRoutes(app: express.Router) {
                 const controller = new YYYYController();
 
 
-              const promise = controller.getOneYYYY.apply(controller, validatedArgs as any);
+              const promise = controller.YYYYDetailPage.apply(controller, validatedArgs as any);
               promiseHandler(controller, promise, response, undefined, next);
             } catch (err) {
                 return next(err);

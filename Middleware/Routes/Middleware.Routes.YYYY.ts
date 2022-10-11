@@ -1,20 +1,22 @@
 import { Request, Response, NextFunction } from "express";
+import { isAPI } from "../../Utils/Utils.Common";
 import { JoiYYYY } from "../../Models/Models.YYYY";
 import { validateInput } from "../../Utils/Utils.Validation";
-import { Route, Middlewares } from "tsoa";
 
-@Route("YYYY")
 export class YYYYMiddleware {
-  @Middlewares()
   public async get(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    console.log("PASS YYYY GET", req.baseUrl);
+    // if (!isAPI(req.query)) {
+    //   res.render("YYYYPage", { title: "YYYY" });
+    //   return;
+    // }
+    console.log("PASS YYYY Detail - GET", req.baseUrl);
     next();
   }
-  @Middlewares()
+
   public async post(
     req: Request,
     res: Response,
@@ -22,12 +24,14 @@ export class YYYYMiddleware {
   ): Promise<void> {
     let body = req.body;
     const valid = validateInput(JoiYYYY, body);
-    if (!valid)
+    if (!valid) {
       res.status(422).json({
-        message: "Invalid request",
+        message: "Invalid Input",
         data: body,
       });
-    console.log("PASS YYYY POST", req.baseUrl);
+      return;
+    }
+    console.log("PASS YYYY Create - POST", req.baseUrl);
     next();
   }
 }
