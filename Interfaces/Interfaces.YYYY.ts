@@ -4,6 +4,7 @@ export interface IYYYY {
   KKKK: string;
   TTTT?: number;
   JJJJ?: boolean;
+  blocked: boolean;
 }
 
 export interface IYYYYQuery extends IQuery, IYYYY {}

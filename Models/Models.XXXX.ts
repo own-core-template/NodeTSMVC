@@ -8,6 +8,7 @@ const definition = {
   ZZZZ: { type: String, required: true },
   WWWW: { type: Number, required: true },
   TTTT: { type: String },
+  blocked: { type: Boolean, default: true },
 };
 const options = {};
 const index = {};

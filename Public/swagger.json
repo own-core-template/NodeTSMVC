@@ -17,11 +17,15 @@
 					},
 					"TTTT": {
 						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
 					}
 				},
 				"required": [
 					"ZZZZ",
-					"WWWW"
+					"WWWW",
+					"blocked"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -75,10 +79,14 @@
 					},
 					"JJJJ": {
 						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
 					}
 				},
 				"required": [
-					"KKKK"
+					"KKKK",
+					"blocked"
 				],
 				"type": "object",
 				"additionalProperties": false

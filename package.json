@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/index.js",
     "start:dev": "nodemon ./dist/index.js",
-    "dev": "npm run build && concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
+    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "build": "tsoa spec-and-routes && tsc",
     "swagger": "tsoa spec"
   },

@@ -1,10 +1,14 @@
-const selectFields = (data: any, allowFields: string) => {
+const selectFields = (
+  data: { [key: string]: any },
+  allowFields: string
+): { [key: string]: any } => {
   try {
-    let newObj: any;
-    if (!allowFields) return data;
-    Object.keys(data).forEach((el) => {
-      if (allowFields.split(",").includes(el)) newObj[el] = data[el];
-    });
+    let newObj: { [key: string]: any } = data;
+    if (allowFields) {
+      Object.keys(data).forEach((el) => {
+        if (allowFields.split(",").includes(el)) newObj[el] = data[el];
+      });
+    }
     return newObj;
   } catch (error) {
     console.log(error);
