@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  YYYYBodyValidate,
-  YYYYQueryValidate,
-} from "../../Validations/Validations.YYYY";
-import { validateInput } from "../../Utils/Utils.Validation";
+  XXXXBodyValidate,
+  XXXXQueryValidate,
+} from "../Validations/Validations.XXXX";
+import { validateInput } from "../Utils/Utils.Validation";
 
-export class YYYYMiddleware {
+export class XXXXMiddleware {
   public async get(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<void> {
     const query = req.query;
-    const valid = validateInput(YYYYQueryValidate, query);
+    const valid = validateInput(XXXXQueryValidate, query);
     if (!valid) {
       res.status(422).json({
         message: "Invalid Query",
@@ -20,7 +20,7 @@ export class YYYYMiddleware {
       });
       return;
     }
-    console.log("PASS YYYY Detail - GET", req.baseUrl);
+    console.log("PASS XXXX READ - GET", req.baseUrl);
     next();
   }
 
@@ -30,7 +30,7 @@ export class YYYYMiddleware {
     next: NextFunction
   ): Promise<void> {
     let body = req.body;
-    const valid = validateInput(YYYYBodyValidate, body);
+    const valid = validateInput(XXXXBodyValidate, body);
     if (!valid) {
       res.status(422).json({
         message: "Invalid Input",
@@ -38,7 +38,7 @@ export class YYYYMiddleware {
       });
       return;
     }
-    console.log("PASS YYYY Create - POST", req.baseUrl);
+    console.log("PASS XXXX WRITE - POST/PUT", req.baseUrl);
     next();
   }
 }

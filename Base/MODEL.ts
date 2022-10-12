@@ -71,6 +71,11 @@ export class BMODEL<T> {
     return this;
   }
 
+  setMiddleware(middleware: (schema: Schema) => void) {
+    middleware(this.m_schema);
+    return this;
+  }
+
   init() {
     (<Model<T> | SoftDeleteModel<any> | HydratedDocument<T>>this.instance) =
       model<T>(this.m_name, this.m_schema, this.m_collection);
