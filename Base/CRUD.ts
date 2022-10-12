@@ -49,6 +49,12 @@ export class BCRUD<T> {
     return doc;
   }
 
+  public async getAllNDeleted(p_query: any): Promise<[T]> {
+    const doc = await this.m_model.findWithDeleted({ p_query });
+    // sendSuccess(this.m_res, data);
+    return doc;
+  }
+
   public async createOne(p_body: T): Promise<T> {
     const doc = await this.m_model.create(p_body);
     // if (!doc) sendError(this.m_res, "Can't Create");
