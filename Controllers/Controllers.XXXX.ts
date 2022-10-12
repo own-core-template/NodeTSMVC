@@ -1,5 +1,5 @@
 import * as express from "express";
-import { IXXXX, XXXXModel } from "../Models/Models.XXXX";
+import { XXXXModel } from "../Models/Models.XXXX";
 import { BCRUD } from "../Base/CRUD";
 import {
   Tags,
@@ -17,9 +17,11 @@ import {
   Response,
 } from "tsoa";
 
+import { IXXXX } from "../Interfaces/Interfaces.XXXX";
 import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
 import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
+import { ERES } from "../Enums/Enums.Mode";
 
 const middleware = new XXXXMiddleware();
 @Tags("XXXX")
@@ -33,37 +35,40 @@ export class XXXXController {
     return data;
   }
 
-  @Get("/detail/:id")
+  @Get("/:i/detail/:id")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Detail")
   public async XXXXGetOne(
     @Request() req: express.Request,
-    @Path() id: string,
-    @Query() api?: boolean
+    @Path() i: ERES,
+    @Path() id: string
   ): Promise<IXXXX | void> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getOne(id);
 
-    if (api) return data;
+    if (i == 1) return data;
 
     const res = (<any>req).res as express.Response;
     res.render("XXXXPage", { title: "XXXX" });
     return;
   }
 
-  @Get("/")
+  @Get("/:i")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Many")
   public async XXXXGetMany(
     @Request() req: express.Request,
-    @Query() api?: boolean
+    @Path() i: ERES,
+    @Query() page?: number,
+    @Query() limit?: number
   ): Promise<IXXXX[] | void> {
     const res = (<any>req).res as express.Response;
+    let query = { ...req.query, page: page, limit: limit };
 
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
-    const data = await CRUD.getMany(req.query);
+    const data = await CRUD.getMany(query);
 
-    if (api) return data;
+    if (i == 1) return data;
 
     res.render("XXXXPage", { title: "XXXX" });
     return;

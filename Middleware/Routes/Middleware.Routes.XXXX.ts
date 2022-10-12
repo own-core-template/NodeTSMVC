@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { isAPI } from "../../Utils/Utils.Common";
-import { JoiXXXX } from "../../Models/Models.XXXX";
+import {
+  XXXXBodyValidate,
+  XXXXQueryValidate,
+} from "../../Validations/Validations.XXXX";
 import { validateInput } from "../../Utils/Utils.Validation";
 
 export class XXXXMiddleware {
@@ -9,10 +11,15 @@ export class XXXXMiddleware {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    // if (!isAPI(req.query)) {
-    //   res.render("XXXXPage", { title: "XXXX" });
-    //   return;
-    // }
+    const query = req.query;
+    const valid = validateInput(XXXXQueryValidate, query);
+    if (!valid) {
+      res.status(422).json({
+        message: "Invalid Query",
+        data: query,
+      });
+      return;
+    }
     console.log("PASS XXXX Detail - GET", req.baseUrl);
     next();
   }
@@ -23,7 +30,7 @@ export class XXXXMiddleware {
     next: NextFunction
   ): Promise<void> {
     let body = req.body;
-    const valid = validateInput(JoiXXXX, body);
+    const valid = validateInput(XXXXBodyValidate, body);
     if (!valid) {
       res.status(422).json({
         message: "Invalid Input",

@@ -1,5 +1,5 @@
 import * as express from "express";
-import { IYYYY, YYYYModel } from "../Models/Models.YYYY";
+import { YYYYModel } from "../Models/Models.YYYY";
 import { BCRUD } from "../Base/CRUD";
 import {
   Tags,
@@ -17,9 +17,11 @@ import {
   Response,
 } from "tsoa";
 
+import { IYYYY } from "../Interfaces/Interfaces.YYYY";
 import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
 import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
+import { ERES } from "../Enums/Enums.Mode";
 
 const middleware = new YYYYMiddleware();
 @Tags("YYYY")
@@ -33,37 +35,40 @@ export class YYYYController {
     return data;
   }
 
-  @Get("/detail/:id")
+  @Get("/:i/detail/:id")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Detail")
   public async YYYYGetOne(
     @Request() req: express.Request,
-    @Path() id: string,
-    @Query() api?: boolean
+    @Path() i: ERES,
+    @Path() id: string
   ): Promise<IYYYY | void> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getOne(id);
 
-    if (api) return data;
+    if (i == 1) return data;
 
     const res = (<any>req).res as express.Response;
     res.render("YYYYPage", { title: "YYYY" });
     return;
   }
 
-  @Get("/")
+  @Get("/:i")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Many")
   public async YYYYGetMany(
     @Request() req: express.Request,
-    @Query() api?: boolean
+    @Path() i: ERES,
+    @Query() page?: number,
+    @Query() limit?: number
   ): Promise<IYYYY[] | void> {
     const res = (<any>req).res as express.Response;
+    let query = { ...req.query, page: page, limit: limit };
 
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
-    const data = await CRUD.getMany(req.query);
+    const data = await CRUD.getMany(query);
 
-    if (api) return data;
+    if (i == 1) return data;
 
     res.render("YYYYPage", { title: "YYYY" });
     return;

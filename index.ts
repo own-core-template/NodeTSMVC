@@ -42,13 +42,13 @@ app.use(
 // init routes
 RegisterRoutes(app);
 
+// error handler
+app.use(ErrorHandler);
+
 // catch 404 and forward to error handler
 app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
   next(createError(404));
 });
-
-// error handler
-app.use(ErrorHandler);
 
 // start server
 server.listen(PORT, () => {

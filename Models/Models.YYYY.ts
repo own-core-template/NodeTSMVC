@@ -1,20 +1,11 @@
 import { Model } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
-import Joi from "joi";
 
-export const JoiYYYY = Joi.object().keys({
-  KKKK: Joi.string().alphanum().min(3).max(30).required(),
-  TTTT: Joi.number().integer().min(1970).max(2013),
-  JJJJ: Joi.boolean(),
-});
-export interface IYYYY {
-  KKKK: string;
-  TTTT: number;
-  JJJJ?: boolean;
-}
+import { IYYYY } from "../Interfaces/Interfaces.YYYY";
+
 const definition = {
   KKKK: { type: String, required: true },
-  TTTT: { type: Number, required: true },
+  TTTT: { type: Number },
   JJJJ: { type: Boolean },
 };
 const options = {};

@@ -14,14 +14,14 @@ const selectFields = (data: any, allowFields: string) => {
 
 export class APIFeatures {
   public query: any;
-  public queryString: any;
-  public _: any;
-  public fields: any;
-  public expands: any;
-  public search: any;
-  public filters: any;
+  private queryString: any;
+  private _: any;
+  private fields: any;
+  private expands: any;
+  private search: any;
+  private filters: any;
 
-  constructor(query: any, queryString: string) {
+  constructor(query: any, queryString: { [key: string]: any }) {
     this.query = query;
     this.queryString = queryString;
   }
@@ -34,7 +34,7 @@ export class APIFeatures {
       /\b(gte|gt|lte|lt|ne|or|and|nor|not|regex)\b/g,
       (match) => `$${match}`
     );
-    let { _, per_page, page, sort, fields, expands, search, ...filters } =
+    let { _, limit, page, sort, fields, expands, search, ...filters } =
       JSON.parse(queryString);
     // list columns belong to current collection
     const columns = Object.keys(this.query.schema.paths).toString();
@@ -80,14 +80,14 @@ export class APIFeatures {
   }
 
   paginate() {
-    const { page, per_page } = this.queryString;
+    const { page, limit } = this.queryString;
 
-    if (page < 0 || per_page < 0) {
+    if (page < 0 || limit < 0) {
       return this;
     }
 
     const pageIndex = page * 1 || 1;
-    const perPage = per_page * 1 || 10;
+    const perPage = limit * 1 || 10;
     const skip = (pageIndex - 1) * perPage;
 
     this.query = this.query.skip(skip).limit(perPage);

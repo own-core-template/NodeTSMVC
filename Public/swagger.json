@@ -26,6 +26,13 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"ERES": {
+				"enum": [
+					0,
+					1
+				],
+				"type": "number"
+			},
 			"IResponseSoftDelete": {
 				"properties": {
 					"acknowledged": {
@@ -71,8 +78,7 @@
 					}
 				},
 				"required": [
-					"KKKK",
-					"TTTT"
+					"KKKK"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -119,7 +125,7 @@
 				]
 			}
 		},
-		"/XXXX/detail/{id}": {
+		"/XXXX/{i}/detail/{id}": {
 			"get": {
 				"operationId": "XXXXGetOne",
 				"responses": {
@@ -146,24 +152,24 @@
 				"parameters": [
 					{
 						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
+						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
 							"type": "string"
 						}
-					},
-					{
-						"in": "query",
-						"name": "api",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
 					}
 				]
 			}
 		},
-		"/XXXX": {
+		"/XXXX/{i}": {
 			"get": {
 				"operationId": "XXXXGetMany",
 				"responses": {
@@ -192,11 +198,29 @@
 				"security": [],
 				"parameters": [
 					{
+						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
 						"in": "query",
-						"name": "api",
+						"name": "page",
 						"required": false,
 						"schema": {
-							"type": "boolean"
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]
@@ -378,7 +402,7 @@
 				]
 			}
 		},
-		"/YYYY/detail/{id}": {
+		"/YYYY/{i}/detail/{id}": {
 			"get": {
 				"operationId": "YYYYGetOne",
 				"responses": {
@@ -405,24 +429,24 @@
 				"parameters": [
 					{
 						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
+						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
 							"type": "string"
 						}
-					},
-					{
-						"in": "query",
-						"name": "api",
-						"required": false,
-						"schema": {
-							"type": "boolean"
-						}
 					}
 				]
 			}
 		},
-		"/YYYY": {
+		"/YYYY/{i}": {
 			"get": {
 				"operationId": "YYYYGetMany",
 				"responses": {
@@ -451,11 +475,29 @@
 				"security": [],
 				"parameters": [
 					{
+						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
 						"in": "query",
-						"name": "api",
+						"name": "page",
 						"required": false,
 						"schema": {
-							"type": "boolean"
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]

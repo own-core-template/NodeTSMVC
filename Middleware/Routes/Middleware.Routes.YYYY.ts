@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { isAPI } from "../../Utils/Utils.Common";
-import { JoiYYYY } from "../../Models/Models.YYYY";
+import {
+  YYYYBodyValidate,
+  YYYYQueryValidate,
+} from "../../Validations/Validations.YYYY";
 import { validateInput } from "../../Utils/Utils.Validation";
 
 export class YYYYMiddleware {
@@ -9,10 +11,15 @@ export class YYYYMiddleware {
     res: Response,
     next: NextFunction
   ): Promise<void> {
-    // if (!isAPI(req.query)) {
-    //   res.render("YYYYPage", { title: "YYYY" });
-    //   return;
-    // }
+    const query = req.query;
+    const valid = validateInput(YYYYQueryValidate, query);
+    if (!valid) {
+      res.status(422).json({
+        message: "Invalid Query",
+        data: query,
+      });
+      return;
+    }
     console.log("PASS YYYY Detail - GET", req.baseUrl);
     next();
   }
@@ -23,7 +30,7 @@ export class YYYYMiddleware {
     next: NextFunction
   ): Promise<void> {
     let body = req.body;
-    const valid = validateInput(JoiYYYY, body);
+    const valid = validateInput(YYYYBodyValidate, body);
     if (!valid) {
       res.status(422).json({
         message: "Invalid Input",
