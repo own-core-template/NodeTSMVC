@@ -19,7 +19,7 @@ import {
 
 import { XXXXMiddleware } from "../Middleware/Routes/Middleware.Routes.XXXX";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
-import { ProvideSingleton } from "Utils/Utils.ProvideSingleton";
+import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
 
 const middleware = new XXXXMiddleware();
 @Tags("XXXX")
@@ -92,10 +92,21 @@ export class XXXXController {
     return data;
   }
 
+  @Delete("/soft-delete/:id")
+  @SuccessResponse(201, "Moved To Trash") // Custom success response
+  @Response(500, "Can't Moved To Trash")
+  public async XXXXSoftDeleteOne(
+    @Path() id: string
+  ): Promise<IResponseSoftDelete> {
+    const CRUD = new BCRUD<IXXXX>(XXXXModel);
+    const data = await CRUD.moveToTrash(id);
+    return data;
+  }
+
   @Delete("/delete/:id")
   @SuccessResponse(201, "Deleted") // Custom success response
   @Response(500, "Can't Delete")
-  public async XXXXDeleteOne(@Path() id: string): Promise<IResponseSoftDelete> {
+  public async XXXXDeleteOne(@Path() id: string): Promise<IXXXX> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.deleteOne(id);
     return data;

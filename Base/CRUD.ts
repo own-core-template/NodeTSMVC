@@ -63,14 +63,14 @@ export class BCRUD<T> {
     return doc;
   }
 
-  public async deleteOne(p_id: string): Promise<any> {
+  public async moveToTrash(p_id: string): Promise<any> {
     const doc = await (<SoftDeleteModel<any>>this.m_model).deleteById(p_id);
     // if (!doc) sendError(this.m_res, "Can't Delete");
     // else sendSuccess(this.m_res, doc, "Delete Successful");
     return doc;
   }
 
-  public async moveToTrash(p_id: string): Promise<any> {
+  public async deleteOne(p_id: string): Promise<T> {
     const doc = await this.m_model.findOneAndDelete({ _id: p_id });
     // if (!doc) sendError(this.m_res, "Can't Soft Delete");
     // else sendSuccess(this.m_res, doc, "Soft Delete Successful");

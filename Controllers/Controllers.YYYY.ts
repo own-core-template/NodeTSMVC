@@ -18,6 +18,8 @@ import {
 } from "tsoa";
 
 import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
+import { IResponseSoftDelete } from "../Utils/Utils.Response";
+import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
 
 const middleware = new YYYYMiddleware();
 @Tags("YYYY")
@@ -89,10 +91,22 @@ export class YYYYController {
     const data = await CRUD.updateOne(id, body);
     return data;
   }
+
+  @Delete("/soft-delete/:id")
+  @SuccessResponse(201, "Moved To Trash") // Custom success response
+  @Response(500, "Can't Moved To Trash")
+  public async YYYYSoftDeleteOne(
+    @Path() id: string
+  ): Promise<IResponseSoftDelete> {
+    const CRUD = new BCRUD<IYYYY>(YYYYModel);
+    const data = await CRUD.moveToTrash(id);
+    return data;
+  }
+
   @Delete("/delete/:id")
   @SuccessResponse(201, "Deleted") // Custom success response
   @Response(500, "Can't Delete")
-  public async YYYYDeleteOne(@Path() id: string): Promise<any> {
+  public async YYYYDeleteOne(@Path() id: string): Promise<IYYYY> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.deleteOne(id);
     return data;

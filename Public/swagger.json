@@ -281,6 +281,40 @@
 				}
 			}
 		},
+		"/XXXX/soft-delete/{id}": {
+			"delete": {
+				"operationId": "XXXXSoftDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Moved To Trash",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IResponseSoftDelete"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Moved To Trash"
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/XXXX/delete/{id}": {
 			"delete": {
 				"operationId": "XXXXDeleteOne",
@@ -290,7 +324,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IResponseSoftDelete"
+									"$ref": "#/components/schemas/IXXXX"
 								}
 							}
 						}
@@ -506,6 +540,40 @@
 				}
 			}
 		},
+		"/YYYY/soft-delete/{id}": {
+			"delete": {
+				"operationId": "YYYYSoftDeleteOne",
+				"responses": {
+					"201": {
+						"description": "Moved To Trash",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IResponseSoftDelete"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Can't Moved To Trash"
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/YYYY/delete/{id}": {
 			"delete": {
 				"operationId": "YYYYDeleteOne",
@@ -514,7 +582,9 @@
 						"description": "Deleted",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/IYYYY"
+								}
 							}
 						}
 					},
