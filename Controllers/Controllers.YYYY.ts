@@ -18,7 +18,7 @@ import {
 } from "tsoa";
 
 import { IYYYY } from "../Interfaces/Interfaces.YYYY";
-import { YYYYMiddleware } from "../Middleware/Routes/Middleware.Routes.YYYY";
+import { YYYYMiddleware } from "../Middleware/Routes/Middleware.YYYY";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
 import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
 import { ERES } from "../Enums/Enums.Mode";
