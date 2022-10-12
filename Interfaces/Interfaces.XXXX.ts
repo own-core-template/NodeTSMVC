@@ -1,4 +1,4 @@
-import { IPagination } from "./Interfaces.Pagination";
+import { IQuery } from "./Interfaces.Common";
 
 export interface IXXXX {
   ZZZZ: string;
@@ -6,8 +6,6 @@ export interface IXXXX {
   TTTT?: boolean;
 }
 
-export interface IXXXXQuery extends IPagination, IXXXX {
-  api: boolean;
-}
+export interface IXXXXQuery extends IQuery, IXXXX {}
 
 export interface IXXXXParams {}

@@ -1,4 +1,4 @@
-import { IPagination } from "./Interfaces.Pagination";
+import { IQuery } from "./Interfaces.Common";
 
 export interface IYYYY {
   KKKK: string;
@@ -6,8 +6,6 @@ export interface IYYYY {
   JJJJ?: boolean;
 }
 
-export interface IYYYYQuery extends IPagination, IYYYY {
-  api: boolean;
-}
+export interface IYYYYQuery extends IQuery, IYYYY {}
 
 export interface IYYYYParams {}

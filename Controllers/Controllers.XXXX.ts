@@ -74,6 +74,27 @@ export class XXXXController {
     return;
   }
 
+  @Get("/:i/trash")
+  @Middlewares([middleware.get])
+  @Response<IXXXX>(200, "XXXX Trash")
+  public async XXXXTrash(
+    @Request() req: express.Request,
+    @Path() i: ERES,
+    @Query() page?: number,
+    @Query() limit?: number
+  ): Promise<IXXXX[] | void> {
+    const res = (<any>req).res as express.Response;
+    let query = { ...req.query, page: page, limit: limit };
+
+    const CRUD = new BCRUD<IXXXX>(XXXXModel);
+    const data = await CRUD.getDeleted(query);
+
+    if (i == 1) return data;
+
+    res.render("XXXXPage", { title: "XXXX Trash" });
+    return;
+  }
+
   @Post("/create")
   @SuccessResponse(201, "Created") // Custom success response
   @Response(500, "Can't Created")
@@ -97,7 +118,7 @@ export class XXXXController {
     return data;
   }
 
-  @Delete("/soft-delete/:id")
+  @Delete("/move-to-trash/:id")
   @SuccessResponse(201, "Moved To Trash") // Custom success response
   @Response(500, "Can't Moved To Trash")
   public async XXXXSoftDeleteOne(

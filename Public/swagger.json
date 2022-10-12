@@ -226,6 +226,63 @@
 				]
 			}
 		},
+		"/XXXX/{i}/trash": {
+			"get": {
+				"operationId": "XXXXTrash",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IXXXX"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"XXXX"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
 		"/XXXX/create": {
 			"post": {
 				"operationId": "XXXXCreateOne",
@@ -305,7 +362,7 @@
 				}
 			}
 		},
-		"/XXXX/soft-delete/{id}": {
+		"/XXXX/move-to-trash/{id}": {
 			"delete": {
 				"operationId": "XXXXSoftDeleteOne",
 				"responses": {
@@ -503,6 +560,63 @@
 				]
 			}
 		},
+		"/YYYY/{i}/trash": {
+			"get": {
+				"operationId": "YYYYTrash",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/IYYYY"
+											},
+											"type": "array"
+										},
+										{}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"YYYY"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "i",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/ERES"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
 		"/YYYY/create": {
 			"post": {
 				"operationId": "YYYYCreateOne",
@@ -582,7 +696,7 @@
 				}
 			}
 		},
-		"/YYYY/soft-delete/{id}": {
+		"/YYYY/move-to-trash/{id}": {
 			"delete": {
 				"operationId": "YYYYSoftDeleteOne",
 				"responses": {

@@ -74,6 +74,27 @@ export class YYYYController {
     return;
   }
 
+  @Get("/:i/trash")
+  @Middlewares([middleware.get])
+  @Response<IYYYY>(200, "YYYY Many")
+  public async YYYYTrash(
+    @Request() req: express.Request,
+    @Path() i: ERES,
+    @Query() page?: number,
+    @Query() limit?: number
+  ): Promise<IYYYY[] | void> {
+    const res = (<any>req).res as express.Response;
+    let query = { ...req.query, page: page, limit: limit };
+
+    const CRUD = new BCRUD<IYYYY>(YYYYModel);
+    const data = await CRUD.getDeleted(query);
+
+    if (i == 1) return data;
+
+    res.render("YYYYPage", { title: "YYYY Trash" });
+    return;
+  }
+
   @Post("/create")
   @SuccessResponse(201, "Created") // Custom success response
   @Response(500, "Can't Created")
@@ -97,7 +118,7 @@ export class YYYYController {
     return data;
   }
 
-  @Delete("/soft-delete/:id")
+  @Delete("/move-to-trash/:id")
   @SuccessResponse(201, "Moved To Trash") // Custom success response
   @Response(500, "Can't Moved To Trash")
   public async YYYYSoftDeleteOne(

@@ -139,6 +139,34 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/XXXX/:i/trash',
+            ...(fetchMiddlewares<RequestHandler>(XXXXController)),
+            ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXTrash)),
+
+            function XXXXController_XXXXTrash(request: any, response: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
+                    page: {"in":"query","name":"page","dataType":"double"},
+                    limit: {"in":"query","name":"limit","dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new XXXXController();
+
+
+              const promise = controller.XXXXTrash.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/XXXX/create',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
             ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXCreateOne)),
@@ -190,7 +218,7 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/XXXX/soft-delete/:id',
+        app.delete('/XXXX/move-to-trash/:id',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
             ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXSoftDeleteOne)),
 
@@ -320,6 +348,34 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/YYYY/:i/trash',
+            ...(fetchMiddlewares<RequestHandler>(YYYYController)),
+            ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYTrash)),
+
+            function YYYYController_YYYYTrash(request: any, response: any, next: any) {
+            const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
+                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
+                    page: {"in":"query","name":"page","dataType":"double"},
+                    limit: {"in":"query","name":"limit","dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+
+                const controller = new YYYYController();
+
+
+              const promise = controller.YYYYTrash.apply(controller, validatedArgs as any);
+              promiseHandler(controller, promise, response, undefined, next);
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/YYYY/create',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
             ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYCreateOne)),
@@ -371,7 +427,7 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/YYYY/soft-delete/:id',
+        app.delete('/YYYY/move-to-trash/:id',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
             ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYSoftDeleteOne)),
 
