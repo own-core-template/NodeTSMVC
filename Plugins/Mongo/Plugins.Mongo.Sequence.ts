@@ -1,4 +1,4 @@
-import { MongooseError, QueryOptions, Schema } from "mongoose";
+import { CallbackError, MongooseError, QueryOptions, Schema } from "mongoose";
 import { ICounter } from "../../Interfaces/Interfaces.Counter";
 import { ICounterPlugin } from "../../Interfaces/Interfaces.Plugin";
 import { CounterModel } from "../../Models/Models.Counter";
@@ -6,10 +6,11 @@ import { CounterModel } from "../../Models/Models.Counter";
 export const mongoSequence = (schema: Schema, parameters: ICounterPlugin) => {
   schema.pre("save", function (next) {
     let doc = this;
-    this.findByIdAndUpdate(
-      { _id: parameters.id },
+    CounterModel.findByIdAndUpdate(
+      parameters.id,
       { $inc: { seq: 1 } },
-      function (error: MongooseError, counter: ICounter) {
+      { new: true, upsert: true },
+      function (error: CallbackError, counter: ICounter) {
         if (error) {
           return next(error);
         }

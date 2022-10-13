@@ -32,7 +32,7 @@ export class BCRUD<T> {
     return doc;
   }
 
-  public async getMany(query: any): Promise<[T]> {
+  public async getMany(query: any): Promise<T[]> {
     const features = new APIFeatures(this.model, query)
       .filter()
       .sort()
@@ -43,13 +43,13 @@ export class BCRUD<T> {
     return doc;
   }
 
-  public async getDeleted(query: any): Promise<[T]> {
+  public async getDeleted(query: any): Promise<T[]> {
     const doc = await this.model.findDeleted({ query });
     // sendSuccess(this.res, data);
     return doc;
   }
 
-  public async getAllNDeleted(query: any): Promise<[T]> {
+  public async getAllNDeleted(query: any): Promise<T[]> {
     const doc = await this.model.findWithDeleted({ query });
     // sendSuccess(this.res, data);
     return doc;

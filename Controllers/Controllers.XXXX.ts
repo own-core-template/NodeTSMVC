@@ -60,10 +60,11 @@ export class XXXXController {
     @Request() req: express.Request,
     @Path() i: ERES,
     @Query() page?: number,
-    @Query() limit?: number
+    @Query() limit?: number,
+    @Query() sort?: string
   ): Promise<IXXXX[] | void> {
     const res = (<any>req).res as express.Response;
-    let query = { ...req.query, page: page, limit: limit };
+    let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getMany(query);
@@ -81,10 +82,11 @@ export class XXXXController {
     @Request() req: express.Request,
     @Path() i: ERES,
     @Query() page?: number,
-    @Query() limit?: number
+    @Query() limit?: number,
+    @Query() sort?: string
   ): Promise<IXXXX[] | void> {
     const res = (<any>req).res as express.Response;
-    let query = { ...req.query, page: page, limit: limit };
+    let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getDeleted(query);

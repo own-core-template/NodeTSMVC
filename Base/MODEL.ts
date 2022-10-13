@@ -26,7 +26,7 @@ export class BMODEL<T> {
   ) {
     (<Schema>this.schema) = new Schema<T>(
       {
-        _id: { type: Number, unique: true, required: true, min: 1 },
+        _id: { type: Number },
         ...definition,
       },
       {
@@ -38,11 +38,9 @@ export class BMODEL<T> {
     );
 
     // Start Add Plugins
-    if (this.collection !== "counters") {
-      (<Schema>this.schema).plugin(mongoSequence, {
-        id: `${this.collection}_counter_id`,
-      });
-    }
+    (<Schema>this.schema).plugin(mongoSequence, {
+      id: `${this.collection}_counter_id`,
+    });
 
     (<Schema>this.schema).plugin(softDel, {
       overrideMethods: "all",
@@ -59,6 +57,7 @@ export class BMODEL<T> {
     return this;
   }
 
+  // Start set middleware
   setMiddleware(middleware: (schema: Schema) => void) {
     middleware(this.schema);
     return this;

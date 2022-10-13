@@ -1,18 +1,19 @@
-import { Model, SchemaOptions } from "mongoose";
-import { BMODEL } from "../Base/MODEL";
+import mongoose, { Schema } from "mongoose";
 
 import { ICounter } from "../Interfaces/Interfaces.Counter";
-import { CounterModelMiddleware } from "../Middleware/Models/Middleware.Models.Counter";
+// import { CounterModelMiddleware } from "../Middleware/Models/Middleware.Models.Counter";
 
-const definition = {
+let schema = new Schema<ICounter>({
   _id: { type: String, required: true },
   seq: { type: Number, default: 0 },
-};
-const options: SchemaOptions = {};
+});
 
-const model = new BMODEL<ICounter>("Counter", "counters")
-  .setup(definition, options)
-  .setIndex({ _id: 1, seq: 1 }, { unique: true })
-  .setMiddleware(CounterModelMiddleware);
+schema.index({ _id: 1, seq: 1 }, { unique: true });
 
-export const CounterModel: Model<ICounter> = model.instance();
+// CounterModelMiddleware(schema);
+
+export const CounterModel = mongoose.model<ICounter>(
+  "Counter",
+  schema,
+  "counters"
+);

@@ -60,10 +60,11 @@ export class YYYYController {
     @Request() req: express.Request,
     @Path() i: ERES,
     @Query() page?: number,
-    @Query() limit?: number
+    @Query() limit?: number,
+    @Query() sort?: string
   ): Promise<IYYYY[] | void> {
     const res = (<any>req).res as express.Response;
-    let query = { ...req.query, page: page, limit: limit };
+    let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getMany(query);
@@ -76,15 +77,16 @@ export class YYYYController {
 
   @Get("/:i/trash")
   @Middlewares([middleware.get])
-  @Response<IYYYY>(200, "YYYY Many")
+  @Response<IYYYY>(200, "YYYY Trash")
   public async YYYYTrash(
     @Request() req: express.Request,
     @Path() i: ERES,
     @Query() page?: number,
-    @Query() limit?: number
+    @Query() limit?: number,
+    @Query() sort?: string
   ): Promise<IYYYY[] | void> {
     const res = (<any>req).res as express.Response;
-    let query = { ...req.query, page: page, limit: limit };
+    let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getDeleted(query);

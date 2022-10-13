@@ -9,6 +9,7 @@ export const XXXXBodyValidate = Joi.object<IXXXX, true>().keys({
 });
 
 export const XXXXQueryValidate = Joi.object<IXXXXQuery, true>().keys({
+  sort: Joi.string(),
   ZZZZ: Joi.string().alphanum().min(3).max(30),
   WWWW: Joi.number().integer().min(1970).max(2013),
   TTTT: Joi.boolean(),
