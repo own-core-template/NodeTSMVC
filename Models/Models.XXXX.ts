@@ -11,10 +11,10 @@ const definition = {
   blocked: { type: Boolean, default: true },
 };
 const options = {};
-const index = {};
 
-const model = new BMODEL<IXXXX>("XXXX", "xxxx", definition, options, index)
-  .setup()
-  .setMiddleware(XXXXModelMiddleware)
-  .init();
-export const XXXXModel: Model<IXXXX> = model.instance;
+const model = new BMODEL<IXXXX>("XXXX", "xxxx")
+  .setup(definition, options)
+  .setIndex({}, {})
+  .setMiddleware(XXXXModelMiddleware);
+
+export const XXXXModel: Model<IXXXX> = model.instance();

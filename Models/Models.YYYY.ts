@@ -11,14 +11,13 @@ const definition = {
   blocked: { type: Boolean, default: true },
 };
 const options = {};
-const index = {};
 
-const model = new BMODEL<IYYYY>("YYYY", "yyyy", definition, options, index)
-  .setup()
-  .setMiddleware(YYYYModelMiddleware)
-  .init();
+const model = new BMODEL<IYYYY>("YYYY", "yyyy")
+  .setup(definition, options)
+  .setIndex({}, {})
+  .setMiddleware(YYYYModelMiddleware);
 
-export const YYYYModel: Model<IYYYY> = model.instance;
+export const YYYYModel: Model<IYYYY> = model.instance();
 
 // const YYYY = new YYYYModel({
 //   KKKK: "Bill",

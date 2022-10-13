@@ -25,16 +25,16 @@ interface IRoute {
 }
 
 export default abstract class BROUTER {
-  private m_router: Router = Router({ mergeParams: true });
-  private m_routerName: string;
+  private router: Router = Router({ mergeParams: true });
+  private routerName: string;
   protected abstract readonly R: IRoute[];
 
-  constructor(p_routerName: string) {
-    this.m_routerName = p_routerName;
+  constructor(routerName: string) {
+    this.routerName = routerName;
   }
 
   public routerName() {
-    return this.m_routerName;
+    return this.routerName;
   }
 
   public setRouter(): Router {
@@ -42,16 +42,16 @@ export default abstract class BROUTER {
     // Returns Router object, which we will use in Server class
     for (const route of this.R) {
       for (const mw of route.middleware) {
-        this.m_router.use(route.path, mw);
+        this.router.use(route.path, mw);
       }
       try {
-        this.m_router[route.method](route.path, catchAsync(route.handler));
-        console.log(this.m_routerName, route.path, route.method);
+        this.router[route.method](route.path, catchAsync(route.handler));
+        console.log(this.routerName, route.path, route.method);
       } catch (err) {
         console.error("Not a valid method");
       }
     }
     // Return router instance (will be usable in Server class)
-    return this.m_router;
+    return this.router;
   }
 }

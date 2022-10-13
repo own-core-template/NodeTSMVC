@@ -2,66 +2,47 @@ import mongoose, {
   model,
   CompileModelOptions,
   Schema,
-  connect,
-  Document,
+  ObtainDocumentType,
+  IndexDefinition,
+  SequenceOptions,
+  SequenceSchema,
+  IndexOptions,
+  SchemaOptions,
+  SchemaDefinition,
   Model,
-  HydratedDocument,
 } from "mongoose";
-import Inc from "mongoose-sequence";
 import softDel, { SoftDeleteModel } from "mongoose-delete";
 
 export class BMODEL<T> {
-  private m_name: string;
-  private m_collection: string | undefined;
-  private m_definition: any;
-  private m_opitons: CompileModelOptions | undefined;
-  private m_index: any;
-  private m_referenceFields?: string[];
-  private m_schema: any;
-  public instance: any;
+  private name: string;
+  private collection: string | undefined;
+  private schema: any;
 
-  constructor(
-    p_name: string,
-    p_collection: string,
-    p_definition: any,
-    p_options: any,
-    p_index: any,
-    p_referenceFields?: string[]
-  ) {
-    this.m_name = p_name;
-    this.m_collection = p_collection;
-    this.m_definition = p_definition;
-    this.m_opitons = p_options;
-    this.m_index = p_index;
-    this.m_referenceFields = p_referenceFields;
+  constructor(name: string, collection: string) {
+    this.name = name;
+    this.collection = collection;
   }
 
-  setup() {
-    this.m_schema = new Schema<T>(
+  setup(
+    definition: ObtainDocumentType<T> | SchemaDefinition,
+    options: SchemaOptions
+  ) {
+    (<Schema>this.schema) = new Schema<T>(
       {
-        // _id: { type: Number },
-        ...this.m_definition,
+        _id: { type: Number },
+        ...definition,
       },
       {
-        // _id: false,
+        _id: false,
         versionKey: false,
         timestamps: true,
-        ...this.m_opitons,
+        ...options,
       }
-    );
-
-    this.m_schema.index({ ...this.m_index });
+    ) as SequenceSchema;
 
     // Start Add Plugins
 
-    // this.m_schema.plugin(Inc, {
-    //   id: `${this.m_collection}_id_counter`,
-    //   reference_fields: this.m_referenceFields,
-    // });
-
-    this.m_schema.plugin(softDel, {
-      deletedBy: true,
-      deletedBytType: String,
+    (<Schema>this.schema).plugin(softDel, {
       overrideMethods: "all",
       deletedAt: true,
     });
@@ -71,14 +52,17 @@ export class BMODEL<T> {
     return this;
   }
 
-  setMiddleware(middleware: (schema: Schema) => void) {
-    middleware(this.m_schema);
+  setIndex(fields: IndexDefinition, options: IndexOptions) {
+    (<Schema>this.schema).index(fields, options);
     return this;
   }
 
-  init() {
-    (<Model<T> | SoftDeleteModel<any> | HydratedDocument<T>>this.instance) =
-      model<T>(this.m_name, this.m_schema, this.m_collection);
+  setMiddleware(middleware: (schema: Schema) => void) {
+    middleware(this.schema);
     return this;
+  }
+
+  instance(): Model<T> | SoftDeleteModel<any> {
+    return model<T>(this.name, this.schema, this.collection);
   }
 }

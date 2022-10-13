@@ -11,10 +11,10 @@ import {
 } from "../Utils/Utils.MongoFeatures";
 
 export class BCRUD<T> {
-  public m_model: any;
+  public model: any;
 
-  constructor(p_model: any) {
-    this.m_model = p_model;
+  constructor(model: any) {
+    this.model = model;
   }
 
   // Test
@@ -27,74 +27,70 @@ export class BCRUD<T> {
     };
   }
 
-  public async getOne(p_id: string): Promise<T> {
-    const doc = await this.m_model.findOne({ _id: p_id });
+  public async getOne(id: string): Promise<T> {
+    const doc = await this.model.findOne({ _id: id });
     return doc;
   }
 
-  public async getMany(p_query: any): Promise<[T]> {
-    const features = new APIFeatures(this.m_model, p_query)
+  public async getMany(query: any): Promise<[T]> {
+    const features = new APIFeatures(this.model, query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
     const doc = await features.query;
-    // sendSuccess(this.m_res, data);
+    // sendSuccess(this.res, data);
     return doc;
   }
 
-  public async getDeleted(p_query: any): Promise<[T]> {
-    const doc = await this.m_model.findDeleted({ p_query });
-    // sendSuccess(this.m_res, data);
+  public async getDeleted(query: any): Promise<[T]> {
+    const doc = await this.model.findDeleted({ query });
+    // sendSuccess(this.res, data);
     return doc;
   }
 
-  public async getAllNDeleted(p_query: any): Promise<[T]> {
-    const doc = await this.m_model.findWithDeleted({ p_query });
-    // sendSuccess(this.m_res, data);
+  public async getAllNDeleted(query: any): Promise<[T]> {
+    const doc = await this.model.findWithDeleted({ query });
+    // sendSuccess(this.res, data);
     return doc;
   }
 
-  public async createOne(p_body: T): Promise<T> {
-    const doc = await this.m_model.create(p_body);
-    // if (!doc) sendError(this.m_res, "Can't Create");
-    // else sendSuccess(this.m_res, doc, "Create Successful");
+  public async createOne(body: T): Promise<T> {
+    const doc = await this.model.create(body);
+    // if (!doc) sendError(this.res, "Can't Create");
+    // else sendSuccess(this.res, doc, "Create Successful");
     return doc;
   }
 
-  public async updateOne(p_id: string, p_body: T): Promise<T> {
-    let body = mongoEpressions(p_body);
+  public async updateOne(id: string, body: T): Promise<T> {
+    let body = mongoEpressions(body);
     const options = { new: true, runValidators: true };
-    const doc = await this.m_model.findOneAndUpdate(
-      { _id: p_id },
-      body,
-      options
-    );
-    // if (!doc) sendError(this.m_res, "Can't Update");
-    // else sendSuccess(this.m_res, doc, "Update Successful");
+    const doc = await this.model.findOneAndUpdate({ _id: id }, body, options);
+    // if (!doc) sendError(this.res, "Can't Update");
+    // else sendSuccess(this.res, doc, "Update Successful");
     return doc;
   }
 
-  public async moveToTrash(p_id: string): Promise<any> {
-    const doc = await (<SoftDeleteModel<any>>this.m_model).deleteById(p_id);
-    // if (!doc) sendError(this.m_res, "Can't Delete");
-    // else sendSuccess(this.m_res, doc, "Delete Successful");
+  public async moveToTrash(id: string): Promise<any> {
+    const doc = await (<SoftDeleteModel<any>>this.model).deleteById(id);
+    // if (!doc) sendError(this.res, "Can't Delete");
+    // else sendSuccess(this.res, doc, "Delete Successful");
     return doc;
   }
 
-  public async deleteOne(p_id: string): Promise<T> {
-    const doc = await this.m_model.findOneAndDelete({ _id: p_id });
-    // if (!doc) sendError(this.m_res, "Can't Soft Delete");
-    // else sendSuccess(this.m_res, doc, "Soft Delete Successful");
+  public async deleteOne(id: string): Promise<T> {
+    const doc = await this.model.findOneAndDelete({ _id: id });
+    // if (!doc) sendError(this.res, "Can't Soft Delete");
+    // else sendSuccess(this.res, doc, "Soft Delete Successful");
     return doc;
   }
 
-  public async restoreOne(p_id: string): Promise<any> {
-    const doc = await (<SoftDeleteModel<any>>this.m_model).restore({
-      _id: p_id,
+  public async restoreOne(id: string): Promise<any> {
+    const doc = await (<SoftDeleteModel<any>>this.model).restore({
+      _id: id,
     });
-    // if (!doc) sendError(this.m_res, "Can't Restore");
-    // else sendSuccess(this.m_res, doc, "Restore Successful");
+    // if (!doc) sendError(this.res, "Can't Restore");
+    // else sendSuccess(this.res, doc, "Restore Successful");
     return doc;
   }
 }
