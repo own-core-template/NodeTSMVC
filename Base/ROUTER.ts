@@ -26,15 +26,15 @@ interface IRoute {
 
 export default abstract class BROUTER {
   private router: Router = Router({ mergeParams: true });
-  private routerName: string;
+  private pathName: string;
   protected abstract readonly R: IRoute[];
 
-  constructor(routerName: string) {
-    this.routerName = routerName;
+  constructor(pathName: string) {
+    this.pathName = pathName;
   }
 
   public routerName() {
-    return this.routerName;
+    return this.pathName;
   }
 
   public setRouter(): Router {
@@ -46,7 +46,7 @@ export default abstract class BROUTER {
       }
       try {
         this.router[route.method](route.path, catchAsync(route.handler));
-        console.log(this.routerName, route.path, route.method);
+        console.log(this.pathName, route.path, route.method);
       } catch (err) {
         console.error("Not a valid method");
       }

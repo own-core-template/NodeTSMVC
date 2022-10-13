@@ -6,12 +6,28 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"FlattenMaps_T_": {
-				"properties": {},
-				"type": "object"
-			},
 			"IXXXX": {
-				"$ref": "#/components/schemas/FlattenMaps_T_"
+				"properties": {
+					"ZZZZ": {
+						"type": "string"
+					},
+					"WWWW": {
+						"type": "number",
+						"format": "double"
+					},
+					"TTTT": {
+						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"ZZZZ",
+					"WWWW"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"ERES": {
 				"enum": [
@@ -52,7 +68,26 @@
 				"additionalProperties": false
 			},
 			"IYYYY": {
-				"$ref": "#/components/schemas/FlattenMaps_T_"
+				"properties": {
+					"KKKK": {
+						"type": "string"
+					},
+					"TTTT": {
+						"type": "number",
+						"format": "double"
+					},
+					"JJJJ": {
+						"type": "boolean"
+					},
+					"blocked": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"KKKK"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}

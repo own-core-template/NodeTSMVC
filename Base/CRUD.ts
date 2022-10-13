@@ -63,7 +63,7 @@ export class BCRUD<T> {
   }
 
   public async updateOne(id: string, body: T): Promise<T> {
-    let body = mongoEpressions(body);
+    body = mongoEpressions(body);
     const options = { new: true, runValidators: true };
     const doc = await this.model.findOneAndUpdate({ _id: id }, body, options);
     // if (!doc) sendError(this.res, "Can't Update");

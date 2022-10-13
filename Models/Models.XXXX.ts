@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, SchemaOptions } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
 
 import { IXXXX } from "../Interfaces/Interfaces.XXXX";
@@ -10,7 +10,7 @@ const definition = {
   TTTT: { type: String },
   blocked: { type: Boolean, default: true },
 };
-const options = {};
+const options: SchemaOptions = {};
 
 const model = new BMODEL<IXXXX>("XXXX", "xxxx")
   .setup(definition, options)

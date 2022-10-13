@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, SchemaOptions } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
 
 import { IYYYY } from "../Interfaces/Interfaces.YYYY";
@@ -10,7 +10,7 @@ const definition = {
   JJJJ: { type: Boolean },
   blocked: { type: Boolean, default: true },
 };
-const options = {};
+const options: SchemaOptions = {};
 
 const model = new BMODEL<IYYYY>("YYYY", "yyyy")
   .setup(definition, options)

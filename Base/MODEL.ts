@@ -1,18 +1,15 @@
-import mongoose, {
+import {
   model,
-  CompileModelOptions,
   Schema,
   ObtainDocumentType,
   IndexDefinition,
-  SequenceOptions,
-  SequenceSchema,
   IndexOptions,
   SchemaOptions,
   SchemaDefinition,
   Model,
 } from "mongoose";
 import softDel, { SoftDeleteModel } from "mongoose-delete";
-
+import { mongoSequence } from "../Plugins/Mongo/Plugins.Mongo.Sequence";
 export class BMODEL<T> {
   private name: string;
   private collection: string | undefined;
@@ -29,7 +26,7 @@ export class BMODEL<T> {
   ) {
     (<Schema>this.schema) = new Schema<T>(
       {
-        _id: { type: Number },
+        _id: { type: Number, unique: true, required: true, min: 1 },
         ...definition,
       },
       {
@@ -38,9 +35,14 @@ export class BMODEL<T> {
         timestamps: true,
         ...options,
       }
-    ) as SequenceSchema;
+    );
 
     // Start Add Plugins
+    if (this.collection !== "counters") {
+      (<Schema>this.schema).plugin(mongoSequence, {
+        id: `${this.collection}_counter_id`,
+      });
+    }
 
     (<Schema>this.schema).plugin(softDel, {
       overrideMethods: "all",

@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, SchemaOptions } from "mongoose";
 import { BMODEL } from "../Base/MODEL";
 
 import { ICounter } from "../Interfaces/Interfaces.Counter";
@@ -8,7 +8,7 @@ const definition = {
   _id: { type: String, required: true },
   seq: { type: Number, default: 0 },
 };
-const options = {};
+const options: SchemaOptions = {};
 
 const model = new BMODEL<ICounter>("Counter", "counters")
   .setup(definition, options)
