@@ -29,13 +29,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ERES": {
-				"enum": [
-					0,
-					1
-				],
-				"type": "number"
-			},
 			"IResponseSoftDelete": {
 				"properties": {
 					"acknowledged": {
@@ -93,12 +86,14 @@
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "nodejs",
+		"title": "restful",
 		"version": "1.0.0",
 		"license": {
 			"name": "ISC"
 		},
-		"contact": {}
+		"contact": {
+			"name": "tptindev"
+		}
 	},
 	"openapi": "3.0.0",
 	"paths": {
@@ -158,14 +153,6 @@
 				"parameters": [
 					{
 						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
-					{
-						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
@@ -203,14 +190,6 @@
 				],
 				"security": [],
 				"parameters": [
-					{
-						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
 					{
 						"in": "query",
 						"name": "page",
@@ -268,14 +247,6 @@
 				],
 				"security": [],
 				"parameters": [
-					{
-						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
 					{
 						"in": "query",
 						"name": "page",
@@ -508,14 +479,6 @@
 				"parameters": [
 					{
 						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
-					{
-						"in": "path",
 						"name": "id",
 						"required": true,
 						"schema": {
@@ -553,14 +516,6 @@
 				],
 				"security": [],
 				"parameters": [
-					{
-						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
 					{
 						"in": "query",
 						"name": "page",
@@ -618,14 +573,6 @@
 				],
 				"security": [],
 				"parameters": [
-					{
-						"in": "path",
-						"name": "i",
-						"required": true,
-						"schema": {
-							"$ref": "#/components/schemas/ERES"
-						}
-					},
 					{
 						"in": "query",
 						"name": "page",

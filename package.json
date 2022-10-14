@@ -1,5 +1,5 @@
 {
-  "name": "nodejs",
+  "name": "restful",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -18,7 +18,7 @@
     "ext": "ts",
     "exec": "ts-node ./index.ts"
   },
-  "author": "",
+  "author": "tptindev",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

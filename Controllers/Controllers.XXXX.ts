@@ -21,7 +21,6 @@ import { IXXXX } from "../Interfaces/Interfaces.XXXX";
 import { XXXXMiddleware } from "../Middleware/Middleware.XXXX";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
 import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
-import { ERES } from "../Enums/Enums.Mode";
 
 const middleware = new XXXXMiddleware();
 @Tags("XXXX")
@@ -40,17 +39,12 @@ export class XXXXController {
   @Response<IXXXX>(200, "XXXX Detail")
   public async XXXXGetOne(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Path() id: string
-  ): Promise<IXXXX | void> {
+  ): Promise<IXXXX> {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getOne(id);
 
-    if (i == 1) return data;
-
-    const res = (<any>req).res as express.Response;
-    res.render("XXXXPage", { title: "XXXX" });
-    return;
+    return data;
   }
 
   @Get("/:i")
@@ -58,7 +52,6 @@ export class XXXXController {
   @Response<IXXXX>(200, "XXXX Many")
   public async XXXXGetMany(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Query() page?: number,
     @Query() limit?: number,
     @Query() sort?: string
@@ -69,10 +62,7 @@ export class XXXXController {
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getMany(query);
 
-    if (i == 1) return data;
-
-    res.render("XXXXPage", { title: "XXXX" });
-    return;
+    return data;
   }
 
   @Get("/:i/trash")
@@ -80,21 +70,17 @@ export class XXXXController {
   @Response<IXXXX>(200, "XXXX Trash")
   public async XXXXTrash(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Query() page?: number,
     @Query() limit?: number,
     @Query() sort?: string
-  ): Promise<IXXXX[] | void> {
+  ): Promise<IXXXX[]> {
     const res = (<any>req).res as express.Response;
     let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IXXXX>(XXXXModel);
     const data = await CRUD.getDeleted(query);
 
-    if (i == 1) return data;
-
-    res.render("XXXXPage", { title: "XXXX Trash" });
-    return;
+    return data;
   }
 
   @Post("/create")

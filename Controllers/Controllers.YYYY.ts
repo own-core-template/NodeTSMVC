@@ -21,7 +21,6 @@ import { IYYYY } from "../Interfaces/Interfaces.YYYY";
 import { YYYYMiddleware } from "../Middleware/Middleware.YYYY";
 import { IResponseSoftDelete } from "../Utils/Utils.Response";
 import { ProvideSingleton } from "../Utils/Utils.ProvideSingleton";
-import { ERES } from "../Enums/Enums.Mode";
 
 const middleware = new YYYYMiddleware();
 @Tags("YYYY")
@@ -40,17 +39,12 @@ export class YYYYController {
   @Response<IYYYY>(200, "YYYY Detail")
   public async YYYYGetOne(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Path() id: string
-  ): Promise<IYYYY | void> {
+  ): Promise<IYYYY> {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getOne(id);
 
-    if (i == 1) return data;
-
-    const res = (<any>req).res as express.Response;
-    res.render("YYYYPage", { title: "YYYY" });
-    return;
+    return data;
   }
 
   @Get("/:i")
@@ -58,7 +52,6 @@ export class YYYYController {
   @Response<IYYYY>(200, "YYYY Many")
   public async YYYYGetMany(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Query() page?: number,
     @Query() limit?: number,
     @Query() sort?: string
@@ -69,10 +62,7 @@ export class YYYYController {
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getMany(query);
 
-    if (i == 1) return data;
-
-    res.render("YYYYPage", { title: "YYYY" });
-    return;
+    return data;
   }
 
   @Get("/:i/trash")
@@ -80,21 +70,17 @@ export class YYYYController {
   @Response<IYYYY>(200, "YYYY Trash")
   public async YYYYTrash(
     @Request() req: express.Request,
-    @Path() i: ERES,
     @Query() page?: number,
     @Query() limit?: number,
     @Query() sort?: string
-  ): Promise<IYYYY[] | void> {
+  ): Promise<IYYYY[]> {
     const res = (<any>req).res as express.Response;
     let query = { ...req.query, page: page, limit: limit, sort: sort };
 
     const CRUD = new BCRUD<IYYYY>(YYYYModel);
     const data = await CRUD.getDeleted(query);
 
-    if (i == 1) return data;
-
-    res.render("YYYYPage", { title: "YYYY Trash" });
-    return;
+    return data;
   }
 
   @Post("/create")
