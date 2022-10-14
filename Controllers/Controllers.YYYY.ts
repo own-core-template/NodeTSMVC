@@ -34,7 +34,7 @@ export class YYYYController {
     return data;
   }
 
-  @Get("/:i/detail/:id")
+  @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Detail")
   public async YYYYGetOne(
@@ -47,7 +47,7 @@ export class YYYYController {
     return data;
   }
 
-  @Get("/:i")
+  @Get("/")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Many")
   public async YYYYGetMany(
@@ -65,7 +65,7 @@ export class YYYYController {
     return data;
   }
 
-  @Get("/:i/trash")
+  @Get("/trash")
   @Middlewares([middleware.get])
   @Response<IYYYY>(200, "YYYY Trash")
   public async YYYYTrash(

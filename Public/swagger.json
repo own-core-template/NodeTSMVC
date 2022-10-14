@@ -126,7 +126,7 @@
 				]
 			}
 		},
-		"/XXXX/{i}/detail/{id}": {
+		"/XXXX/detail/{id}": {
 			"get": {
 				"operationId": "XXXXGetOne",
 				"responses": {
@@ -135,12 +135,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/IXXXX"
-										},
-										{}
-									]
+									"$ref": "#/components/schemas/IXXXX"
 								}
 							}
 						}
@@ -162,7 +157,7 @@
 				]
 			}
 		},
-		"/XXXX/{i}": {
+		"/XXXX": {
 			"get": {
 				"operationId": "XXXXGetMany",
 				"responses": {
@@ -219,7 +214,7 @@
 				]
 			}
 		},
-		"/XXXX/{i}/trash": {
+		"/XXXX/trash": {
 			"get": {
 				"operationId": "XXXXTrash",
 				"responses": {
@@ -228,15 +223,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"items": {
-												"$ref": "#/components/schemas/IXXXX"
-											},
-											"type": "array"
-										},
-										{}
-									]
+									"items": {
+										"$ref": "#/components/schemas/IXXXX"
+									},
+									"type": "array"
 								}
 							}
 						}
@@ -452,7 +442,7 @@
 				]
 			}
 		},
-		"/YYYY/{i}/detail/{id}": {
+		"/YYYY/detail/{id}": {
 			"get": {
 				"operationId": "YYYYGetOne",
 				"responses": {
@@ -461,12 +451,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"$ref": "#/components/schemas/IYYYY"
-										},
-										{}
-									]
+									"$ref": "#/components/schemas/IYYYY"
 								}
 							}
 						}
@@ -488,7 +473,7 @@
 				]
 			}
 		},
-		"/YYYY/{i}": {
+		"/YYYY": {
 			"get": {
 				"operationId": "YYYYGetMany",
 				"responses": {
@@ -545,7 +530,7 @@
 				]
 			}
 		},
-		"/YYYY/{i}/trash": {
+		"/YYYY/trash": {
 			"get": {
 				"operationId": "YYYYTrash",
 				"responses": {
@@ -554,15 +539,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"anyOf": [
-										{
-											"items": {
-												"$ref": "#/components/schemas/IYYYY"
-											},
-											"type": "array"
-										},
-										{}
-									]
+									"items": {
+										"$ref": "#/components/schemas/IYYYY"
+									},
+									"type": "array"
 								}
 							}
 						}

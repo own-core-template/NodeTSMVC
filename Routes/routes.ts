@@ -23,11 +23,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ERES": {
-        "dataType": "refEnum",
-        "enums": [0,1],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IResponseSoftDelete": {
         "dataType": "refObject",
         "properties": {
@@ -86,14 +81,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/XXXX/:i/detail/:id',
+        app.get('/XXXX/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
             ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXGetOne)),
 
             function XXXXController_XXXXGetOne(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
 
@@ -113,14 +107,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/XXXX/:i',
+        app.get('/XXXX',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
             ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXGetMany)),
 
             function XXXXController_XXXXGetMany(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     page: {"in":"query","name":"page","dataType":"double"},
                     limit: {"in":"query","name":"limit","dataType":"double"},
                     sort: {"in":"query","name":"sort","dataType":"string"},
@@ -142,14 +135,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/XXXX/:i/trash',
+        app.get('/XXXX/trash',
             ...(fetchMiddlewares<RequestHandler>(XXXXController)),
             ...(fetchMiddlewares<RequestHandler>(XXXXController.prototype.XXXXTrash)),
 
             function XXXXController_XXXXTrash(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     page: {"in":"query","name":"page","dataType":"double"},
                     limit: {"in":"query","name":"limit","dataType":"double"},
                     sort: {"in":"query","name":"sort","dataType":"string"},
@@ -297,14 +289,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/YYYY/:i/detail/:id',
+        app.get('/YYYY/detail/:id',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
             ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYGetOne)),
 
             function YYYYController_YYYYGetOne(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
             };
 
@@ -324,14 +315,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/YYYY/:i',
+        app.get('/YYYY',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
             ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYGetMany)),
 
             function YYYYController_YYYYGetMany(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     page: {"in":"query","name":"page","dataType":"double"},
                     limit: {"in":"query","name":"limit","dataType":"double"},
                     sort: {"in":"query","name":"sort","dataType":"string"},
@@ -353,14 +343,13 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.get('/YYYY/:i/trash',
+        app.get('/YYYY/trash',
             ...(fetchMiddlewares<RequestHandler>(YYYYController)),
             ...(fetchMiddlewares<RequestHandler>(YYYYController.prototype.YYYYTrash)),
 
             function YYYYController_YYYYTrash(request: any, response: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    i: {"in":"path","name":"i","required":true,"ref":"ERES"},
                     page: {"in":"query","name":"page","dataType":"double"},
                     limit: {"in":"query","name":"limit","dataType":"double"},
                     sort: {"in":"query","name":"sort","dataType":"string"},

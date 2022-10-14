@@ -34,7 +34,7 @@ export class XXXXController {
     return data;
   }
 
-  @Get("/:i/detail/:id")
+  @Get("/detail/:id")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Detail")
   public async XXXXGetOne(
@@ -47,7 +47,7 @@ export class XXXXController {
     return data;
   }
 
-  @Get("/:i")
+  @Get("/")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Many")
   public async XXXXGetMany(
@@ -65,7 +65,7 @@ export class XXXXController {
     return data;
   }
 
-  @Get("/:i/trash")
+  @Get("/trash")
   @Middlewares([middleware.get])
   @Response<IXXXX>(200, "XXXX Trash")
   public async XXXXTrash(
